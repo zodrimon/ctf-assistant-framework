@@ -131,3 +131,14 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/modules/forensics/file_analysis/__init__.py`
 - `src/ctf_assistant/modules/forensics/__init__.py`
 - `tests/test_file_analysis.py`
+
+---
+### TASK-009 — Build the Baseline Triage Workflow
+**Date:** 2026-07-09
+**What I built:** I created a simple YAML file (`workflow.yaml`) inside the `file_analysis` module that tells the `WorkflowRunner` exactly which commands to execute to triage a file: `file`, `exiftool`, and `strings`.
+**Key concepts:** 
+- **Triage:** In forensics, triage means taking a quick, initial look at evidence to figure out what it is and whether it's important, before spending hours doing deep analysis. The commands in this workflow perform that rapid initial check.
+- **Strings Analysis:** Running the `strings` command on a file extracts any human-readable text hidden inside compiled code. We set a minimum length of 15 characters to filter out random garbage bytes that just happen to look like letters, keeping only the most likely useful text (like passwords or URLs).
+**How it fits together:** When the CLI is run, it will load this YAML file and hand it to the `WorkflowRunner`. The runner will then execute these system commands against whatever file the user wants to investigate, saving the output to our `Session`.
+**Files touched:** 
+- `src/ctf_assistant/modules/forensics/file_analysis/workflow.yaml`

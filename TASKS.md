@@ -38,7 +38,7 @@
 
 - [x] TASK-008 — DONE — `modules/forensics/file_analysis/module.py`:
       implement the `Module` interface using `Detector` from TASK-005.
-- [ ] TASK-009 — TODO — `modules/forensics/file_analysis/workflow.yaml`:
+- [x] TASK-009 — DONE — `modules/forensics/file_analysis/workflow.yaml`:
       baseline triage steps (`file`, `exiftool`, `strings` with sane limits).
 - [ ] TASK-010 — TODO — Wire tool-missing detection + user prompt
       (per CONTEXT.md §2 rule 5) into `WorkflowRunner`.
