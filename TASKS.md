@@ -13,7 +13,7 @@
       directly to `main` for this one task only (there's nothing to review
       yet — it's just scaffolding). If repo creation or push fails, that's a
       setup/auth problem — ask the human, don't guess at fixes.
-- [ ] TASK-002 — TODO — Add dev tooling: pytest, ruff/black config, pre-commit
+- [x] TASK-002 — DONE — Add dev tooling: pytest, ruff/black config, pre-commit
       hook config (formatting only, no logic yet).
 - [ ] TASK-003 — TODO — Define `Module` and `Workflow` protocol/interfaces in
       `modules/base.py` per CONTEXT.md §2 rule 6. No implementations yet —

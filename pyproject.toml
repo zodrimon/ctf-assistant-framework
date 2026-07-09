@@ -16,8 +16,31 @@ dependencies = [
     # Dependencies will be added in future tasks
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "ruff>=0.3.0",
+    "pre-commit>=3.6.0"
+]
+
 [project.scripts]
 ctf-assistant = "ctf_assistant.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ctf_assistant"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
