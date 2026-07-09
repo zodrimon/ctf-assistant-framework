@@ -15,7 +15,7 @@
       setup/auth problem — ask the human, don't guess at fixes.
 - [x] TASK-002 — DONE — Add dev tooling: pytest, ruff/black config, pre-commit
       hook config (formatting only, no logic yet).
-- [ ] TASK-003 — TODO — Define `Module` and `Workflow` protocol/interfaces in
+- [x] TASK-003 — DONE — Define `Module` and `Workflow` protocol/interfaces in
       `modules/base.py` per CONTEXT.md §2 rule 6. No implementations yet —
       interfaces and docstrings only.
 
