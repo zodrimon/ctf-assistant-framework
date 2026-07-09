@@ -25,3 +25,15 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:** 
 - `src/ctf_assistant/modules/base.py`
 - `src/ctf_assistant/modules/__init__.py`
+
+---
+### TASK-004 — Build the Session state manager
+**Date:** 2026-07-09
+**What I built:** I created the `Session` class which tracks everything that happens during an investigation. It stores findings from modules and can save all of its data to a JSON file on disk, and load it back up later.
+**Key concepts:** 
+- **State Management/Serialization:** "State" is all the data generated so far. "Serialization" means taking that live data in memory (like Python objects) and converting it into a string format (like JSON) so it can be written to a hard drive and restored later without losing any information.
+**How it fits together:** If you stop an investigation halfway or if the power goes out, the `Session` JSON file acts as a save game. The `WorkflowRunner` uses this Session to remember what steps were already completed and what evidence was already found.
+**Files touched:** 
+- `src/ctf_assistant/engine/session.py`
+- `src/ctf_assistant/engine/__init__.py`
+- `tests/test_session.py`

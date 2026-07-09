@@ -21,7 +21,7 @@
 
 ## Milestone 1 — Investigation Engine Core (skeleton, no real detection logic)
 
-- [ ] TASK-004 — TODO — `engine/session.py`: `Session` class that can be
+- [x] TASK-004 — DONE — `engine/session.py`: `Session` class that can be
       created, saved to and loaded from a JSON file on disk (this is the
       resumability mechanism for actual investigations, separate from
       CONTEXT.md which tracks *build* progress).
