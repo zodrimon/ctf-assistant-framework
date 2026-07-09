@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 2 (First Real Module: File Analysis)
 Module in progress: File Analysis
-Last completed task: TASK-009
-Current task: TASK-010 (see TASKS.md)
+Last completed task: TASK-010
+Current task: TASK-011 (see TASKS.md)
 Blockers: none
-Last commit: 3997c63
-Branch: task/009-file-analysis-workflow
+Last commit: e6f8e6b
+Branch: task/010-workflow-tool-detection
 ```
 
 **Session startup checklist (do this every time, in order):**

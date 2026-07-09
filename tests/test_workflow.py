@@ -49,3 +49,26 @@ steps:
     findings = session.findings["Error Workflow"]
     assert findings[0]["status"] == "error"
     assert "Missing context variable" in findings[0]["error"]
+
+
+def test_workflow_missing_tool_declined(tmp_path: Path, monkeypatch):
+    session = Session()
+    runner = WorkflowRunner(session)
+    
+    workflow_yaml = """
+name: "Missing Tool Workflow"
+steps:
+  - name: "Fake Tool Step"
+    command: ["this_tool_does_not_exist_123", "arg"]
+"""
+    yaml_file = tmp_path / "missing_tool.yaml"
+    yaml_file.write_text(workflow_yaml)
+    
+    # Mock input to return 'N' (decline installation)
+    monkeypatch.setattr('builtins.input', lambda _: 'N')
+    
+    runner.execute(yaml_file, context={})
+    
+    findings = session.findings["Missing Tool Workflow"]
+    assert findings[0]["status"] == "error"
+    assert "user declined installation" in findings[0]["error"]

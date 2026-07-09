@@ -142,3 +142,14 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** When the CLI is run, it will load this YAML file and hand it to the `WorkflowRunner`. The runner will then execute these system commands against whatever file the user wants to investigate, saving the output to our `Session`.
 **Files touched:** 
 - `src/ctf_assistant/modules/forensics/file_analysis/workflow.yaml`
+
+---
+### TASK-010 — Wire Tool-Missing Detection into WorkflowRunner
+**Date:** 2026-07-09
+**What I built:** I added logic to the `WorkflowRunner` that checks if a required terminal tool (like `exiftool` or `strings`) is actually installed before trying to run it. If it's missing, it automatically pauses and asks the user if they want to install it via `apt-get`.
+**Key concepts:** 
+- **Dependency Management:** Scripts often fail unexpectedly when they assume a tool is installed. By explicitly checking for the tool using `shutil.which` and handling the missing case interactively, we make the framework much more robust and user-friendly.
+**How it fits together:** This enforces Rule 5 from our architecture: we use standard Linux tools under the hood, but if the investigator's machine doesn't have them installed, the `WorkflowRunner` catches the problem and attempts to fix it automatically, rather than crashing or returning silent errors.
+**Files touched:** 
+- `src/ctf_assistant/engine/workflow.py`
+- `tests/test_workflow.py`

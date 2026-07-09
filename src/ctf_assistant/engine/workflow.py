@@ -62,6 +62,41 @@ class WorkflowRunner:
                 )
                 continue
 
+            # Tool missing detection per Rule 5
+            tool_name = command[0]
+            import shutil
+            if not shutil.which(tool_name):
+                print(f"\n[!] Required tool '{tool_name}' is not installed.")
+                ans = input(f"Attempt to install '{tool_name}' using apt-get? (Requires sudo) [y/N]: ")
+                if ans.lower().strip() == 'y':
+                    try:
+                        print(f"[*] Installing {tool_name}...")
+                        subprocess.run(["sudo", "apt-get", "install", "-y", tool_name], check=True)
+                        if not shutil.which(tool_name):
+                            raise FileNotFoundError
+                    except Exception as e:
+                        self.session.add_finding(
+                            workflow_name,
+                            {
+                                "step": step_name,
+                                "status": "error",
+                                "command": " ".join(command),
+                                "error": f"Failed to install tool '{tool_name}': {e}"
+                            }
+                        )
+                        continue
+                else:
+                    self.session.add_finding(
+                        workflow_name,
+                        {
+                            "step": step_name,
+                            "status": "error",
+                            "command": " ".join(command),
+                            "error": f"Command not found and user declined installation: {tool_name}"
+                        }
+                    )
+                    continue
+
             try:
                 result = subprocess.run(
                     command,
