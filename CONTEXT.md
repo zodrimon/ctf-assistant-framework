@@ -84,11 +84,13 @@ Branch: main
 4. Create/switch to a feature branch named `task/<task-id>-<short-slug>`.
 5. Implement, run any tests/formatting for that task.
 6. Commit with message format: `[TASK-XXX] <short description>`.
-7. Update the task's status in `TASKS.md` to `DONE`.
-8. Update the "Current Status" block above (module, last completed task,
+7. Write a Learning Log entry for the completed task in `docs/LEARNING_LOG.md`
+   per §7, before updating TASKS.md status.
+8. Update the task's status in `TASKS.md` to `DONE`.
+9. Update the "Current Status" block above (module, last completed task,
    next task, last commit hash, branch).
-9. Stop. Do not proceed to the next task automatically — the human decides
-   whether to merge, review, or continue.
+10. Stop. Do not proceed to the next task automatically — the human decides
+    whether to merge, review, or continue.
 
 ---
 
@@ -142,3 +144,30 @@ Do not ask about things already answered in this file — read §2 and §3 first
 - No bare `except:` — catch specific exceptions.
 - Keep functions small; one responsibility each (matches the "one task, one
   commit" philosophy of the whole project).
+
+---
+
+## 7. Learning Log Requirement
+
+After completing EVERY task (starting from TASK-002 onward), you must append
+an entry to `docs/LEARNING_LOG.md` before marking the task DONE. This file
+is for the human to read later and actually learn from — write it in plain,
+non-jargon language, as if explaining to someone who knows Python but is new
+to CTF/forensics concepts.
+
+Each entry must use this format:
+
+---
+### TASK-XXX — <task title>
+**Date:** <date>
+**What I built:** 2-4 plain-language sentences on what was added and why it
+was needed.
+**Key concepts:** Any forensics/security/Python concept introduced in this
+task, explained in 1-2 sentences each — assume the reader doesn't know it yet.
+**How it fits together:** 1-2 sentences on how this piece connects to the
+engine/modules/workflow described in CONTEXT.md §2.
+**Files touched:** bullet list of files created or changed.
+---
+
+Do not skip this even for small tasks. If a task is trivial, the entry can
+be short, but it must still exist.
