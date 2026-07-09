@@ -25,7 +25,7 @@
       created, saved to and loaded from a JSON file on disk (this is the
       resumability mechanism for actual investigations, separate from
       CONTEXT.md which tracks *build* progress).
-- [ ] TASK-005 — TODO — `engine/detector.py`: stub `Detector` that only
+- [x] TASK-005 — DONE — `engine/detector.py`: stub `Detector` that only
       identifies file type via the `file` command + magic bytes (no full
       multi-signal confidence scoring yet — that's a later task).
 - [ ] TASK-006 — TODO — `engine/workflow.py`: `WorkflowRunner` that can load a

@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 1 (Digital Forensics MVP)
 Module in progress: File Analysis
-Last completed task: TASK-004
-Current task: TASK-005 (see TASKS.md)
+Last completed task: TASK-005
+Current task: TASK-006 (see TASKS.md)
 Blockers: none
-Last commit: 5ad542d
-Branch: task/004-engine-session
+Last commit: b234c10
+Branch: task/005-engine-detector
 ```
 
 **Session startup checklist (do this every time, in order):**

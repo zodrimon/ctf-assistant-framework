@@ -37,3 +37,15 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/engine/session.py`
 - `src/ctf_assistant/engine/__init__.py`
 - `tests/test_session.py`
+
+---
+### TASK-005 — Build the file type Detector stub
+**Date:** 2026-07-09
+**What I built:** I created a `Detector` class that uses two basic techniques to identify what type a file is: reading its "magic bytes" (the very first few bytes of the file) and asking the Linux `file` command for its opinion. 
+**Key concepts:** 
+- **Magic Bytes (File Signatures):** Most file formats start with a specific sequence of bytes that act like a signature. For example, Windows executables start with "MZ". By reading these, we don't have to rely on the file extension (like `.exe`), which can easily be faked or removed by malware authors.
+- **Subprocess Execution:** Sometimes the best way to do a task is to ask another program to do it. We use Python's `subprocess` to run the system's built-in `file` command behind the scenes and capture its text output.
+**How it fits together:** Later tasks will use this `Detector` inside a dedicated File Analysis module. By creating it as a separate engine component now, we can eventually make it much smarter (combining multiple signals to give a confidence score) without changing the CTF modules that rely on it.
+**Files touched:** 
+- `src/ctf_assistant/engine/detector.py`
+- `tests/test_detector.py`
