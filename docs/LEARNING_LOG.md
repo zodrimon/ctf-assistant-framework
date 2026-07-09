@@ -117,3 +117,17 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:** 
 - `src/ctf_assistant/engine/report.py`
 - `tests/test_report.py`
+
+---
+### TASK-008 — Build the first real Module: File Analysis
+**Date:** 2026-07-09
+**What I built:** I created our very first CTF Module called `FileAnalysisModule`. It follows the exact blueprint (the `Module` interface) we created in TASK-003 and uses the `Detector` from TASK-005 to identify file types.
+**Key concepts:** 
+- **Modularity in Practice:** This is where the architecture comes together. The `FileAnalysisModule` is completely isolated from the engine. It doesn't know how workflows are run or how reports are generated; it only knows how to take a file and return basic analysis results as a dictionary.
+- **Reference Implementation:** This module serves as the "gold standard" example. If someone wants to add a "Memory Dump Analysis" module later, they can just copy how this `FileAnalysisModule` is structured.
+**How it fits together:** We are entering Milestone 2! We now have the engine running, and we are starting to plug in the actual forensic capabilities. This module is the bridge between the raw investigation files and our execution engine.
+**Files touched:** 
+- `src/ctf_assistant/modules/forensics/file_analysis/module.py`
+- `src/ctf_assistant/modules/forensics/file_analysis/__init__.py`
+- `src/ctf_assistant/modules/forensics/__init__.py`
+- `tests/test_file_analysis.py`
