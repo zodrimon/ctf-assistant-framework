@@ -28,7 +28,7 @@
 - [x] TASK-005 — DONE — `engine/detector.py`: stub `Detector` that only
       identifies file type via the `file` command + magic bytes (no full
       multi-signal confidence scoring yet — that's a later task).
-- [ ] TASK-006 — TODO — `engine/workflow.py`: `WorkflowRunner` that can load a
+- [x] TASK-006 — DONE — `engine/workflow.py`: `WorkflowRunner` that can load a
       YAML workflow file and execute its steps as subprocess calls, storing
       output into the `Session`.
 - [ ] TASK-007 — TODO — `engine/report.py`: minimal Markdown report renderer

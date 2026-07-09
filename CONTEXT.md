@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 1 (Digital Forensics MVP)
 Module in progress: File Analysis
-Last completed task: TASK-005
-Current task: TASK-006 (see TASKS.md)
+Last completed task: TASK-006
+Current task: TASK-007 (see TASKS.md)
 Blockers: none
-Last commit: b234c10
-Branch: task/005-engine-detector
+Last commit: 472da9a
+Branch: task/006-workflow-runner
 ```
 
 **Session startup checklist (do this every time, in order):**
@@ -83,7 +83,7 @@ Branch: task/005-engine-detector
    efficient to batch them.
 4. Create/switch to a feature branch named `task/<task-id>-<short-slug>`.
 5. Implement, run any tests/formatting for that task.
-6. Commit with message format: `[TASK-XXX] <short description>`.
+6. Commit with a natural, human-like commit message (e.g., 'Add WorkflowRunner class and tests').
 7. Write a Learning Log entry for the completed task in `docs/LEARNING_LOG.md`
    per §7, before updating TASKS.md status.
 8. Update the task's status in `TASKS.md` to `DONE`.

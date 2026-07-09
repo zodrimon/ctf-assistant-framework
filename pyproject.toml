@@ -13,7 +13,7 @@ authors = [
     { name = "CTF Assistant Contributors" }
 ]
 dependencies = [
-    # Dependencies will be added in future tasks
+    "PyYAML>=6.0",
 ]
 
 [project.optional-dependencies]
