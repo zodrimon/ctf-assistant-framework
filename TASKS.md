@@ -49,7 +49,7 @@
 
 ## Milestone 3 — RAG (do not start until Milestone 2 is fully DONE)
 
-- [ ] TASK-013 — TODO — `rag/store.py`: ChromaDB wrapper, local embedding
+- [x] TASK-013 — DONE — `rag/store.py`: ChromaDB wrapper, local embedding
       model, persistent collection on disk.
 - [ ] TASK-014 — TODO — `rag/ingest.py`: CLI command to add a Markdown/PDF/TXT
       file into the knowledge base.

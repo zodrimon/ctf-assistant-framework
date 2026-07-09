@@ -176,3 +176,17 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This officially completes Milestone 2! We now have a fully functional (albeit basic) forensics tool that an investigator can run directly from their terminal to automatically triage evidence files.
 **Files touched:** 
 - `src/ctf_assistant/cli.py`
+
+---
+### TASK-013 — Build the RAG Knowledge Store
+**Date:** 2026-07-09
+**What I built:** I created `src/ctf_assistant/rag/store.py` to manage our offline document database. It uses `chromadb` as the storage engine and automatically converts text into mathematical coordinates (embeddings) using the `onnxruntime` engine so we can search by meaning instead of exact keywords.
+**Key concepts:** 
+- **Embeddings:** A way to translate human text into a massive list of numbers (coordinates). Sentences with similar meanings get coordinates that are close together, allowing the AI to search for concepts rather than exact words.
+- **Vector Database (ChromaDB):** A special type of database designed specifically to store these long lists of coordinates and search through them incredibly fast.
+**How it fits together:** This is the beginning of Phase 3 (RAG). By setting up this database, we now have a place to dump CTF writeups, manuals, and hints. In the future, when the CLI runs a triage, it will be able to search this offline database to provide relevant hints based on the evidence it found.
+**Files touched:** 
+- `pyproject.toml`
+- `src/ctf_assistant/rag/__init__.py`
+- `src/ctf_assistant/rag/store.py`
+- `tests/test_rag_store.py`

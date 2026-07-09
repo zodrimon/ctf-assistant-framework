@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 3 (RAG)
 Module in progress: None
-Last completed task: TASK-012
-Current task: TASK-013 (see TASKS.md)
+Last completed task: TASK-013
+Current task: TASK-014 (see TASKS.md)
 Blockers: none
-Last commit: 4e8588b
-Branch: task/012-cli-investigate
+Last commit: a3fab3e
+Branch: task/013-rag-store
 ```
 
 **Session startup checklist (do this every time, in order):**
