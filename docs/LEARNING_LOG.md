@@ -190,3 +190,16 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/rag/__init__.py`
 - `src/ctf_assistant/rag/store.py`
 - `tests/test_rag_store.py`
+
+---
+### TASK-014 — Build the RAG Ingest CLI Command
+**Date:** 2026-07-09
+**What I built:** I added an `ingest` command to our CLI tool that allows you to easily add Markdown, TXT, or PDF files into the local ChromaDB database. It automatically extracts the text and splits it into small, overlapping chunks before saving.
+**Key concepts:** 
+- **Chunking:** Because embedding models (the AI that turns text into coordinates) have a strict limit on how much text they can process at once (usually around 200-300 words), we must split large documents like PDFs into smaller "chunks" so that every paragraph gets indexed properly.
+- **PDF Parsing:** We used a library called `pypdf` to read the binary data of a PDF file and extract the raw, human-readable text out of it.
+**How it fits together:** This command is the bridge between your raw notes and the `KnowledgeStore` database we built in the last task. Now that we can actually put data into the database, the next task will be building the tool to pull it back out!
+**Files touched:** 
+- `src/ctf_assistant/rag/ingest.py`
+- `src/ctf_assistant/cli.py`
+- `pyproject.toml`

@@ -51,7 +51,7 @@
 
 - [x] TASK-013 — DONE — `rag/store.py`: ChromaDB wrapper, local embedding
       model, persistent collection on disk.
-- [ ] TASK-014 — TODO — `rag/ingest.py`: CLI command to add a Markdown/PDF/TXT
+- [x] TASK-014 — DONE — `rag/ingest.py`: CLI command to add a Markdown/PDF/TXT
       file into the knowledge base.
 - [ ] TASK-015 — TODO — `rag/retriever.py`: query function used by workflows
       to pull relevant notes given a finding.

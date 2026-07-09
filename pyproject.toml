@@ -16,6 +16,7 @@ dependencies = [
     "PyYAML>=6.0",
     "chromadb>=0.4.22",
     "onnxruntime>=1.17.0",
+    "pypdf>=4.0.0",
 ]
 
 [project.optional-dependencies]

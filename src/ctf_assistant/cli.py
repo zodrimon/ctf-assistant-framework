@@ -6,6 +6,7 @@ from ctf_assistant.engine.session import Session
 from ctf_assistant.engine.workflow import WorkflowRunner
 from ctf_assistant.engine.report import ReportRenderer
 from ctf_assistant.modules.forensics.file_analysis.module import FileAnalysisModule
+from ctf_assistant.rag.ingest import ingest_file
 
 
 def investigate(args):
@@ -47,6 +48,11 @@ def investigate(args):
     print(report_md)
 
 
+def ingest(args):
+    target_file = Path(args.file).resolve()
+    ingest_file(target_file)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="CTF Assistant Framework - Interactive Forensics"
@@ -59,10 +65,18 @@ def main():
     )
     investigate_parser.add_argument("file", help="Path to the evidence file to analyze")
 
+    # `ingest` command
+    ingest_parser = subparsers.add_parser(
+        "ingest", help="Ingest a file into the RAG knowledge base"
+    )
+    ingest_parser.add_argument("file", help="Path to the document (.md, .txt, .pdf) to ingest")
+
     args = parser.parse_args()
 
     if args.command == "investigate":
         investigate(args)
+    elif args.command == "ingest":
+        ingest(args)
 
 if __name__ == "__main__":
     main()
