@@ -31,7 +31,7 @@
 - [x] TASK-006 — DONE — `engine/workflow.py`: `WorkflowRunner` that can load a
       YAML workflow file and execute its steps as subprocess calls, storing
       output into the `Session`.
-- [ ] TASK-007 — TODO — `engine/report.py`: minimal Markdown report renderer
+- [x] TASK-007 — DONE — `engine/report.py`: minimal Markdown report renderer
       that takes a `Session` and outputs a `.md` file.
 
 ## Milestone 2 — First Real Module: File Analysis (reference implementation)

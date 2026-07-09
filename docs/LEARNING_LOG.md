@@ -105,3 +105,15 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/engine/workflow.py`
 - `tests/test_workflow.py`
 - `pyproject.toml`
+
+---
+### TASK-007 — Build the Markdown Report Renderer
+**Date:** 2026-07-09
+**What I built:** I created a `ReportRenderer` class that takes a `Session` (which holds all our investigation data) and automatically turns it into a neatly formatted Markdown report. It loops through all the findings and formats them with headers and code blocks.
+**Key concepts:** 
+- **Data Presentation:** While JSON (from our `Session` class) is great for computers to read and save, it's terrible for humans to read. The Report Renderer's job is purely translation—taking structured data and presenting it cleanly.
+- **Markdown:** A lightweight markup language that allows us to format text (like adding bolding or code blocks) using plain text characters. It's universally supported by platforms like GitHub.
+**How it fits together:** Once a workflow finishes running all its tools and gathering evidence into the `Session`, this renderer provides the final output that the investigator actually reads to figure out what happened.
+**Files touched:** 
+- `src/ctf_assistant/engine/report.py`
+- `tests/test_report.py`
