@@ -215,3 +215,16 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/rag/retriever.py`
 - `src/ctf_assistant/cli.py`
 - `src/ctf_assistant/engine/workflow.py`
+
+---
+### TASK-016 — AI Provider Abstraction
+**Date:** 2026-07-09
+**What I built:** I added an AI abstraction layer (`AIProvider` protocol) to allow the framework to talk to LLMs without hardcoding a specific one. I implemented the first provider for Google Gemini using the modern `google-genai` SDK. I also added a highly human-friendly configuration message to the CLI. If a user tries to run `--ai gemini` without an API key, the tool catches it and prints exact instructions on how to get a free key from Google AI Studio, rather than crashing.
+**Key concepts:** 
+- **Pluggability:** By using an abstract base class, we can seamlessly add local models (like Ollama) or paid models (like OpenAI) later.
+- **Graceful Degradation (Rule 4):** AI is purely advisory. The system falls back to normal execution if AI is missing or fails.
+**Files touched:** 
+- `src/ctf_assistant/ai/base.py`
+- `src/ctf_assistant/ai/gemini.py`
+- `src/ctf_assistant/cli.py`
+- `pyproject.toml`

@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 3 (RAG)
+Phase: 4 (AI)
 Module in progress: None
-Last completed task: TASK-015
-Current task: None (Milestone 3 complete)
+Last completed task: TASK-016
+Current task: None (Milestone 4 partial)
 Blockers: none
 Last commit: pending
-Branch: task/015-rag-retriever
+Branch: task/016-ai-provider
 ```
 
 **Session startup checklist (do this every time, in order):**

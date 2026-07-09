@@ -8,6 +8,7 @@ from ctf_assistant.engine.report import ReportRenderer
 from ctf_assistant.modules.forensics.file_analysis.module import FileAnalysisModule
 from ctf_assistant.rag.ingest import ingest_file
 from ctf_assistant.rag.retriever import retrieve_notes
+from ctf_assistant.ai.gemini import GeminiProvider
 
 
 def investigate(args):
@@ -39,7 +40,33 @@ def investigate(args):
         
     runner.execute(workflow_path, context={"target": str(target_file)})
 
-    # Step 3: Print Findings
+    # Step 3: AI Analysis (if requested)
+    if hasattr(args, 'ai') and args.ai == "gemini":
+        print("\n[*] Initializing Gemini AI Provider...")
+        ai_provider = GeminiProvider()
+        
+        if not ai_provider.is_available():
+            print("\n" + "="*60)
+            print("🤖 AI Feature Requested but API Key is Missing!")
+            print("="*60)
+            print("You selected the 'gemini' AI provider, but the 'GEMINI_API_KEY'")
+            print("environment variable was not found.")
+            print("\nDon't worry! You can use this for FREE by getting an API key:")
+            print("1. Go to: https://aistudio.google.com/app/apikey")
+            print("2. Generate a free key.")
+            print("3. Run this in your terminal before starting:")
+            print("   export GEMINI_API_KEY='your_key'       (Linux/macOS)")
+            print("   $env:GEMINI_API_KEY='your_key'         (Windows PowerShell)")
+            print("\nThe framework will proceed locally WITHOUT the AI analysis.")
+            print("="*60 + "\n")
+        else:
+            print("[*] Asking AI for advice based on findings...")
+            advice = ai_provider.analyze_findings(session.findings)
+            if advice:
+                session.add_finding("AI_Advisor", {"step": "Analysis", "status": "success", "advice": advice})
+                print("[+] AI advice added to the report.")
+
+    # Step 4: Print Findings
     print("\n" + "="*50)
     print("INVESTIGATION REPORT")
     print("="*50 + "\n")
@@ -80,6 +107,7 @@ def main():
         "investigate", help="Run initial detection and triage workflows on a file"
     )
     investigate_parser.add_argument("file", help="Path to the evidence file to analyze")
+    investigate_parser.add_argument("--ai", help="Select an optional AI provider to analyze findings", choices=["gemini"])
 
     # `ingest` command
     ingest_parser = subparsers.add_parser(

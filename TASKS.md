@@ -58,9 +58,13 @@
 
 ---
 
+## Milestone 4 — AI & Analysis
+- [x] TASK-016 — DONE — AI provider abstraction (`ai/provider.py`) + first provider (Gemini). Includes human-friendly CLI configuration guidance.
+
+---
+
 ## Backlog (not yet broken into tasks — do not start)
 
-- AI provider abstraction (`ai/provider.py`) + first provider (Gemini)
 - Manual vs Auto investigation mode
 - Remaining Phase 1 modules (Archives, PCAP, Memory, Steganography, Disk,
   Log Analysis, Malware Triage, Binary Inspection)
