@@ -165,3 +165,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:** 
 - `tests/test_file_analysis.py`
 - `tests/fixtures/sample.bin`
+
+---
+### TASK-012 — Build the CLI Entrypoint
+**Date:** 2026-07-09
+**What I built:** I created `src/ctf_assistant/cli.py` which provides the main command-line interface for the application. It adds the `ctf-assistant investigate <file>` command. This script takes the file, feeds it to the `FileAnalysisModule` (which uses the `Detector`), passes the results into a `Session`, runs the `WorkflowRunner`, and finally prints a Markdown report to the screen using our `ReportRenderer`.
+**Key concepts:** 
+- **CLI (Command Line Interface):** A text-based way to interact with a program, instead of clicking buttons in a GUI. `argparse` is the built-in Python library we used to parse the words the user types into the terminal.
+- **Entrypoint:** The main script that starts the whole application. Before this, we had lots of disconnected parts (the engine, the module, the session, the renderer). This file is the "glue" that binds them all into a single, usable tool.
+**How it fits together:** This officially completes Milestone 2! We now have a fully functional (albeit basic) forensics tool that an investigator can run directly from their terminal to automatically triage evidence files.
+**Files touched:** 
+- `src/ctf_assistant/cli.py`

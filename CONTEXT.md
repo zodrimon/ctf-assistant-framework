@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 2 (First Real Module: File Analysis)
-Module in progress: File Analysis
-Last completed task: TASK-011
-Current task: TASK-012 (see TASKS.md)
+Phase: 3 (RAG)
+Module in progress: None
+Last completed task: TASK-012
+Current task: TASK-013 (see TASKS.md)
 Blockers: none
-Last commit: 14f17e5
-Branch: task/011-file-analysis-e2e-tests
+Last commit: 4e8588b
+Branch: task/012-cli-investigate
 ```
 
 **Session startup checklist (do this every time, in order):**

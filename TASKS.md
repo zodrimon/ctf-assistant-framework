@@ -44,7 +44,7 @@
       (per CONTEXT.md §2 rule 5) into `WorkflowRunner`.
 - [x] TASK-011 — DONE — Tests for the File Analysis module end-to-end
       (use a small fixture file checked into `tests/fixtures/`).
-- [ ] TASK-012 — TODO — CLI command `ctf-assistant investigate <file>` that
+- [x] TASK-012 — DONE — CLI command `ctf-assistant investigate <file>` that
       runs Detector → matching Module → WorkflowRunner → prints findings.
 
 ## Milestone 3 — RAG (do not start until Milestone 2 is fully DONE)
