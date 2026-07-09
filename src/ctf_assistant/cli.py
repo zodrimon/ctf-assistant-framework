@@ -7,6 +7,7 @@ from ctf_assistant.engine.workflow import WorkflowRunner
 from ctf_assistant.engine.report import ReportRenderer
 from ctf_assistant.modules.forensics.file_analysis.module import FileAnalysisModule
 from ctf_assistant.rag.ingest import ingest_file
+from ctf_assistant.rag.retriever import retrieve_notes
 
 
 def investigate(args):
@@ -53,6 +54,21 @@ def ingest(args):
     ingest_file(target_file)
 
 
+def search(args):
+    print(f"[*] Searching for: '{args.query}'")
+    notes = retrieve_notes(args.query, n_results=3)
+    
+    if not notes:
+        print("No relevant notes found.")
+        return
+        
+    for i, note in enumerate(notes, 1):
+        print(f"\n--- Result {i} (Distance: {note['distance']:.4f}) ---")
+        print(f"Source: {note['metadata'].get('source', 'Unknown')} (Chunk {note['metadata'].get('chunk_index', 0)})")
+        print(note['text'])
+        print("-" * 50)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="CTF Assistant Framework - Interactive Forensics"
@@ -71,12 +87,20 @@ def main():
     )
     ingest_parser.add_argument("file", help="Path to the document (.md, .txt, .pdf) to ingest")
 
+    # `search` command
+    search_parser = subparsers.add_parser(
+        "search", help="Search the RAG knowledge base"
+    )
+    search_parser.add_argument("query", help="Text to search for")
+
     args = parser.parse_args()
 
     if args.command == "investigate":
         investigate(args)
     elif args.command == "ingest":
         ingest(args)
+    elif args.command == "search":
+        search(args)
 
 if __name__ == "__main__":
     main()

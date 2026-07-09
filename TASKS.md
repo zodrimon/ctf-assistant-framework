@@ -53,7 +53,7 @@
       model, persistent collection on disk.
 - [x] TASK-014 — DONE — `rag/ingest.py`: CLI command to add a Markdown/PDF/TXT
       file into the knowledge base.
-- [ ] TASK-015 — TODO — `rag/retriever.py`: query function used by workflows
+- [x] TASK-015 — DONE — `rag/retriever.py`: query function used by workflows
       to pull relevant notes given a finding.
 
 ---

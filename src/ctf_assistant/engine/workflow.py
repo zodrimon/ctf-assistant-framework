@@ -5,6 +5,7 @@ from typing import Any, Dict
 import yaml
 
 from ctf_assistant.engine.session import Session
+from ctf_assistant.rag.retriever import retrieve_notes
 
 
 class WorkflowRunner:
@@ -105,14 +106,24 @@ class WorkflowRunner:
                     check=True
                 )
                 
+                output = result.stdout.strip()
+                finding_data = {
+                    "step": step_name,
+                    "status": "success",
+                    "command": " ".join(command),
+                    "output": output
+                }
+                
+                if output:
+                    # Query RAG store with the first 1000 characters to avoid huge queries
+                    query_text = output[:1000]
+                    notes = retrieve_notes(query_text, n_results=1)
+                    if notes:
+                        finding_data["relevant_notes"] = notes
+                
                 self.session.add_finding(
                     workflow_name,
-                    {
-                        "step": step_name,
-                        "status": "success",
-                        "command": " ".join(command),
-                        "output": result.stdout.strip()
-                    }
+                    finding_data
                 )
             except subprocess.CalledProcessError as e:
                 self.session.add_finding(

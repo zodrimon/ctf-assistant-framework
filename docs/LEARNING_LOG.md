@@ -203,3 +203,15 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/rag/ingest.py`
 - `src/ctf_assistant/cli.py`
 - `pyproject.toml`
+
+---
+### TASK-015 — Build the RAG Retriever
+**Date:** 2026-07-09
+**What I built:** I created `retriever.py` to search the ChromaDB knowledge base and integrated it in two places. First, I added a `search` command to the CLI for manual querying. Second, I wired it into the `WorkflowRunner` so that every time a workflow command succeeds, it automatically searches the database using the command's output as the query.
+**Key concepts:** 
+- **Auto-Retrieval:** Instead of the investigator having to manually search their notes every time they find something, the tool now "reads over their shoulder." When a tool like `strings` finds interesting text, the engine instantly queries the RAG store and attaches any relevant hints directly to the finding in the report.
+**How it fits together:** This completes the core of Milestone 3! We now have the offline database, the ability to put files into it, and the ability for the engine to automatically pull relevant context out of it during an active investigation.
+**Files touched:** 
+- `src/ctf_assistant/rag/retriever.py`
+- `src/ctf_assistant/cli.py`
+- `src/ctf_assistant/engine/workflow.py`
