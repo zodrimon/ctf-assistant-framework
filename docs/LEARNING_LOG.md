@@ -153,3 +153,15 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:** 
 - `src/ctf_assistant/engine/workflow.py`
 - `tests/test_workflow.py`
+
+---
+### TASK-011 — Build End-to-End Tests for File Analysis
+**Date:** 2026-07-09
+**What I built:** I created an end-to-end (E2E) test for the File Analysis module. It creates a small dummy binary file, runs it through the `FileAnalysisModule` and the `WorkflowRunner`, and verifies that all expected forensic commands are executed successfully.
+**Key concepts:** 
+- **End-to-End Testing (E2E):** While unit tests check if one specific function works in isolation, E2E tests check if the entire system works when all the pieces are plugged together. This test simulates a full investigation on a single file from start to finish.
+- **Mocking External Dependencies:** Because we can't guarantee that tools like `exiftool` are installed on the computer running the tests, I used a technique called "mocking". The test intercepts calls to the terminal and fakes the output, allowing us to test our Python logic without actually needing the forensics tools installed.
+**How it fits together:** This test proves that the engine (Session + WorkflowRunner) and the module (FileAnalysisModule + workflow.yaml) can communicate seamlessly to perform a complete triage operation.
+**Files touched:** 
+- `tests/test_file_analysis.py`
+- `tests/fixtures/sample.bin`

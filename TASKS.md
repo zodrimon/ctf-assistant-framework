@@ -42,7 +42,7 @@
       baseline triage steps (`file`, `exiftool`, `strings` with sane limits).
 - [x] TASK-010 — DONE — Wire tool-missing detection + user prompt
       (per CONTEXT.md §2 rule 5) into `WorkflowRunner`.
-- [ ] TASK-011 — TODO — Tests for the File Analysis module end-to-end
+- [x] TASK-011 — DONE — Tests for the File Analysis module end-to-end
       (use a small fixture file checked into `tests/fixtures/`).
 - [ ] TASK-012 — TODO — CLI command `ctf-assistant investigate <file>` that
       runs Detector → matching Module → WorkflowRunner → prints findings.
