@@ -715,3 +715,20 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** Analysts can now revisit the raw data and findings from past sessions directly within the TUI without having to grep through `.json` files manually.
 **Files touched:**
 - `src/ctf_assistant/tui/app.py`
+
+---
+### TASK-044 — TUI Manual QA Checklist
+**Date:** 2026-07-10
+**What I built:** Since automated testing for TUI frameworks can be brittle, I added a manual QA checklist to verify the core UI workflows.
+
+#### TUI Manual Verification Checklist
+- [ ] Run `python -m ctf_assistant.cli tui` and verify the app launches without errors.
+- [ ] In the **Investigation** tab, enter an invalid path and click "Start Triage". Verify an error message is shown.
+- [ ] In the **Investigation** tab, enter a valid path (e.g. to a PCAP or text file) and click "Start Triage".
+- [ ] Verify the input field and button become disabled while running.
+- [ ] Verify the workflow execution streams line-by-line output to the RichLog.
+- [ ] Verify the UI says "Investigation Complete!" when finished, and the button is re-enabled.
+- [ ] Switch to the **Session Browser** tab.
+- [ ] Verify a list of session `.json` files is displayed on the left.
+- [ ] Select a session from the list. Verify its raw JSON content is pretty-printed in the right pane.
+- [ ] Press `q` to quit the application cleanly.

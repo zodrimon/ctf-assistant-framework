@@ -190,7 +190,7 @@
       the TUI layer).
 - [x] TASK-043 — DONE — TUI session browser: list past sessions (from saved
       Session JSON files) and allow resuming/viewing one.
-- [ ] TASK-044 — TODO — Since TUI interactions are harder to unit test
+- [x] TASK-044 — DONE — Since TUI interactions are harder to unit test
       automatically, add a manual QA checklist to docs/LEARNING_LOG.md
       (steps for the human to click through and verify) rather than skipping
       verification entirely.
