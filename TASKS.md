@@ -107,7 +107,7 @@
 
 ## Milestone 8 — Memory Forensics Module
 
-- [ ] TASK-025 — TODO — modules/forensics/memory/module.py: detect raw
+- [x] TASK-025 — DONE — modules/forensics/memory/module.py: detect raw
       memory dump signatures (best-effort — these are harder to fingerprint
       than other formats; ask the human if confidence is too low to proceed
       automatically, per CONTEXT.md 2 rule 3).

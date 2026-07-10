@@ -512,3 +512,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `tests/fixtures/sample.pcap`
 - `tests/test_pcap.py`
+
+---
+### TASK-025 — Memory Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `MemoryModule` to detect RAM dumps. Because many memory dumps (like raw `.vmem` files) have no identifying magic bytes, the module uses "best-effort" detection: it looks for known Windows crash dump signatures first, and if those aren't found, it falls back to checking the file extension and interactively asking the user to confirm.
+**Key concepts:**
+- **Interactive Fallback (Rule 3):** When automated analysis confidence is too low (e.g. a raw file with no magic bytes), the system must never guess. Asking the human investigator ensures we don't accidentally run heavy memory workflows on the wrong files.
+**How it fits together:** This is the entry point for Milestone 8 (Memory Forensics).
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/memory/__init__.py`
+- `src/ctf_assistant/modules/forensics/memory/module.py`
