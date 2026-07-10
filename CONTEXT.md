@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 8 (Memory Forensics)
 Module in progress: Memory Forensics
-Last completed task: TASK-025
+Last completed task: TASK-026
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/025-memory-module
+Branch: task/026-memory-workflow
 ```
 
 **Session startup checklist (do this every time, in order):**
