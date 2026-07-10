@@ -545,3 +545,14 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This officially completes Milestone 8 (Memory Forensics).
 **Files touched:**
 - `tests/test_memory.py`
+
+---
+### TASK-028 — Steganography Candidate Detection
+**Date:** 2026-07-10
+**What I built:** I created `SteganographyModule` to detect potential media files containing hidden payloads. Because any image (PNG, JPEG, GIF, BMP) or audio file (WAV) is a stego candidate, the module identifies these files via magic bytes or the Linux `file` command fallback. Additionally, I implemented a fast Shannon entropy calculation to measure the randomness of the file data.
+**Key concepts:**
+- **Entropy Analysis (Rule 3):** Steganography works by hiding compressed or encrypted payloads inside media files. Encrypted data looks like pure randomness, which drastically raises the "entropy" (a mathematical measure of randomness) of the host file. Calculating entropy provides a signal to the investigator that something unnatural is hidden inside.
+**How it fits together:** This is the entry point for Milestone 9 (Steganography).
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/steganography/__init__.py`
+- `src/ctf_assistant/modules/forensics/steganography/module.py`

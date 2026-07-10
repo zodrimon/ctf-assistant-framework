@@ -122,7 +122,7 @@
 
 ## Milestone 9 — Steganography Module
 
-- [ ] TASK-028 — TODO — modules/forensics/steganography/module.py: detect
+- [x] TASK-028 — DONE — modules/forensics/steganography/module.py: detect
       image/audio files likely to be candidates (extend beyond magic bytes —
       consider a basic entropy check per rule 3, since stego payloads
       often raise entropy in specific regions).
