@@ -67,12 +67,12 @@ team learners. Not enterprise incident response (not yet).
 
 ```
 Phase: 11 (Log Analysis)
-Module in progress: Log Analysis
-Last completed task: TASK-035
+Module in progress: None
+Last completed task: TASK-036
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/035-log-workflow
+Branch: task/036-log-tests
 ```
 
 **Session startup checklist (do this every time, in order):**
