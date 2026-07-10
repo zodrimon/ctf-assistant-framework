@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 4 (AI)
+Phase: 5 (Manual vs Auto)
 Module in progress: None
-Last completed task: TASK-016
-Current task: None (Milestone 4 partial)
+Last completed task: TASK-017
+Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/016-ai-provider
+Branch: task/017-manual-mode
 ```
 
 **Session startup checklist (do this every time, in order):**

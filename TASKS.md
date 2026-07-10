@@ -63,10 +63,159 @@
 
 ---
 
-## Backlog (not yet broken into tasks — do not start)
+## Milestone 5 — Manual vs Auto Investigation Mode
 
-- Manual vs Auto investigation mode
-- Remaining Phase 1 modules (Archives, PCAP, Memory, Steganography, Disk,
-  Log Analysis, Malware Triage, Binary Inspection)
-- TUI (Textual) beyond basic CLI
-- PDF/HTML report export
+> Do this before starting new modules — every module below will use this.
+
+- [x] TASK-017 — DONE — Add `mode: "auto" | "manual"` to `Session`, and a
+      `--mode` flag to the `investigate` CLI command (default: manual — safer
+      default, user opts into auto). In `WorkflowRunner`, when mode is
+      `manual`, prompt `Run <tool> <args>? Reason: <reason> [Y/n]` before each
+      step; when `auto`, run steps sequentially without prompting but still
+      log every command to the session. Reuse the existing tool-missing
+      prompt logic from TASK-010 — don't duplicate it.
+- [ ] TASK-018 — TODO — Tests: one test asserting manual mode calls the
+      confirmation prompt per step (mock the prompt to return yes/no and
+      check behavior), one test asserting auto mode runs all steps without
+      prompting.
+
+---
+
+## Milestone 6 — Archives Module
+
+- [ ] TASK-019 — TODO — modules/forensics/archives/module.py: detect zip,
+      tar, gzip, rar, 7z via magic bytes (not extension). Follow the File
+      Analysis module's structure exactly (CONTEXT.md 2 rule 6).
+- [ ] TASK-020 — TODO — archives/workflow.yaml: list contents, extract to a
+      session-scoped temp dir, and recurse -- if an extracted file is
+      itself an archive, re-run detection on it (zip-in-zip case from the
+      original spec). Cap recursion depth (suggest 5) to avoid zip-bomb
+      style infinite loops -- ask the human to confirm the cap before hardcoding.
+- [ ] TASK-021 — TODO — Tests using a small nested-archive fixture
+      (zip containing a zip) checked into tests/fixtures/.
+
+## Milestone 7 — Network Forensics (PCAP) Module
+
+- [ ] TASK-022 — TODO — modules/forensics/pcap/module.py: detect
+      pcap/pcapng via magic bytes.
+- [ ] TASK-023 — TODO — pcap/workflow.yaml: baseline steps using tshark
+      (protocol hierarchy summary, HTTP object export). Requires tshark —
+      confirm tool-missing prompt (TASK-010 logic) triggers correctly if
+      it's absent.
+- [ ] TASK-024 — TODO — Tests using a small sample .pcap fixture (a few
+      packets is enough — keep the fixture file small).
+
+## Milestone 8 — Memory Forensics Module
+
+- [ ] TASK-025 — TODO — modules/forensics/memory/module.py: detect raw
+      memory dump signatures (best-effort — these are harder to fingerprint
+      than other formats; ask the human if confidence is too low to proceed
+      automatically, per CONTEXT.md 2 rule 3).
+- [ ] TASK-026 — TODO — memory/workflow.yaml or Python Workflow subclass
+      (likely needs branching logic — profile detection before running
+      plugins — so this may belong in Python per rule 2): baseline
+      Volatility3 windows.pslist/windows.pstree. Requires volatility3.
+- [ ] TASK-027 — TODO — Tests: since real memory dumps are large, use a
+      mocked Volatility3 output (recorded sample JSON) rather than a real
+      fixture file — confirm this approach with the human before proceeding
+      given section 4b (real memory dumps are impractical as committed fixtures).
+
+## Milestone 9 — Steganography Module
+
+- [ ] TASK-028 — TODO — modules/forensics/steganography/module.py: detect
+      image/audio files likely to be candidates (extend beyond magic bytes —
+      consider a basic entropy check per rule 3, since stego payloads
+      often raise entropy in specific regions).
+- [ ] TASK-029 — TODO — steganography/workflow.yaml: baseline steps —
+      binwalk, exiftool, strings, and where applicable zsteg (PNG/BMP)
+      or steghide (JPEG). Presented as alternative paths, not a forced
+      sequence, per the original spec ("never assume only one solution
+      exists") — ask the human how alternative-path selection should surface
+      in manual mode before implementing (e.g. numbered menu).
+- [ ] TASK-030 — TODO — Tests using a small fixture image with a known
+      trivial hidden string (e.g. appended after IEND in a PNG).
+
+## Milestone 10 — Disk Images Module
+
+- [ ] TASK-031 — TODO — modules/forensics/disk/module.py: detect raw/dd
+      and E01 disk image formats.
+- [ ] TASK-032 — TODO — disk/workflow.yaml: partition listing (mmls from
+      Sleuth Kit) and file carving (foremost). Requires sleuthkit and
+      foremost.
+- [ ] TASK-033 — TODO — Tests using a small synthetic disk image fixture
+      (a few MB, built with a known partition table — document how it was
+      generated in the test file's docstring so it's reproducible).
+
+## Milestone 11 — Log Analysis Module
+
+- [ ] TASK-034 — TODO — modules/forensics/log_analysis/module.py: detect
+      common log formats (syslog, Apache/nginx access logs, auth.log) by
+      content pattern, not extension.
+- [ ] TASK-035 — TODO — log_analysis/workflow.yaml: baseline pattern
+      extraction (failed logins, IPs, timestamps) via grep/ripgrep, plus
+      a simple chronological timeline builder in Python.
+- [ ] TASK-036 — TODO — Tests using a small sample log fixture with a couple
+      of planted "findings" (e.g. a few failed SSH login lines).
+
+## Milestone 12 — Malware Triage + Basic Binary Inspection Module
+
+- [ ] TASK-037 — TODO — modules/forensics/malware_triage/module.py: detect
+      PE (Windows) and ELF (Linux) executables via magic bytes.
+- [ ] TASK-038 — TODO — malware_triage/workflow.yaml: static-only
+      triage — file hashes (md5/sha256), strings, yara scan against a
+      small bundled ruleset, PE/ELF header inspection. Requires yara.
+      Never execute the analyzed binary — this is a hard safety rule,
+      not a style choice; if any future task suggests running the sample,
+      stop and ask the human explicitly.
+- [ ] TASK-039 — TODO — Add a short note to docs/LEARNING_LOG.md (as part
+      of this task's entry) explaining why static-only analysis is the
+      default and what sandboxing would be needed before ever adding dynamic
+      analysis — this is a teaching moment worth capturing explicitly.
+- [ ] TASK-040 — TODO — Tests using a small benign test binary (e.g. a
+      trivial compiled "hello world," not any real-world sample).
+
+---
+
+## Milestone 13 — TUI (Textual)
+
+> Adds a richer interface alongside the CLI — the CLI must keep working
+> unchanged; this is additive, not a replacement.
+
+- [ ] TASK-041 — TODO — Textual app skeleton: `ctf-assistant tui` launches a
+      main screen listing detected/available modules. No investigation logic
+      yet — just navigation shell.
+- [ ] TASK-042 — TODO — TUI investigation view: pick a file, run its matched
+      module's workflow, stream step-by-step output live (reuse
+      WorkflowRunner from the engine — do not duplicate execution logic in
+      the TUI layer).
+- [ ] TASK-043 — TODO — TUI session browser: list past sessions (from saved
+      Session JSON files) and allow resuming/viewing one.
+- [ ] TASK-044 — TODO — Since TUI interactions are harder to unit test
+      automatically, add a manual QA checklist to docs/LEARNING_LOG.md
+      (steps for the human to click through and verify) rather than skipping
+      verification entirely.
+
+## Milestone 14 — Report Export (PDF/HTML)
+
+- [ ] TASK-045 — TODO — HTML report renderer: reuse the same Session data as
+      the existing Markdown renderer (TASK-007) — do not build a second,
+      separate data-gathering path.
+- [ ] TASK-046 — TODO — PDF export from the HTML/Markdown source (e.g. via
+      WeasyPrint or Pandoc — confirm which is available/lighter-weight before
+      picking, per section 4b).
+- [ ] TASK-047 — TODO — CLI command `ctf-assistant report export --format
+      {md,html,pdf}`.
+- [ ] TASK-048 — TODO — Tests verifying each export format produces a
+      non-empty file with expected key sections present.
+
+---
+
+## Backlog (future phases — not yet broken into tasks, do not start)
+
+- Phase 2 — Web Exploitation modules
+- Phase 3 — Reverse Engineering modules
+- Phase 4 — Cryptography modules
+- Phase 5 — Misc (OSINT, Wireless, Cloud, Mobile, Hardware, ICS/SCADA, AI CTF)
+- Challenge templates, workflow editor, community workflow sharing, plugin
+  marketplace, knowledge graph, evidence relationship mapping (all listed
+  under "Future Features" in the original spec — intentionally deferred)
