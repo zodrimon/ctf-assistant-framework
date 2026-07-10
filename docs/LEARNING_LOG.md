@@ -599,3 +599,24 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This provides the automated analysis commands that the `WorkflowRunner` will execute when a disk artifact is identified.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/disk/workflow.yaml`
+
+---
+### TASK-033 — Disk Module Testing
+**Date:** 2026-07-10
+**What I built:** I added comprehensive tests for the Disk Forensics module. Instead of committing a multi-megabyte synthetic image, I dynamically created a mock E01 file using standard E01 magic bytes (`EVF\x09...`) and simulated the raw disk interactive fallback logic via `monkeypatch`.
+**Key concepts:**
+- **Fixture Generation Documentation:** As required by the spec, I documented the exact shell commands (`dd`, `parted`, `mkfs.ext4`) required to manually reproduce a synthetic 5MB `ext4` disk image inside the `test_disk.py` docstring. This serves as a knowledge-base reference for any future developers working on disk artifact testing, even though we use smaller mocked bytes for the unit tests themselves to save space.
+**How it fits together:** This officially completes Milestone 10 (Disk Images Module).
+**Files touched:**
+- `tests/test_disk.py`
+
+---
+### TASK-034 — Log Analysis Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `LogAnalysisModule` to detect common log files (like `syslog`, `auth.log`, and Apache/Nginx web access logs). Instead of relying on `.log` file extensions, it opens the file, reads the first 10 lines as text, and uses Regular Expressions (Regex) to match known logging date-time formats and IP address patterns.
+**Key concepts:**
+- **Content-Based Detection:** File extensions are frequently stripped or altered during CTFs. By using Regex to look for patterns (e.g. `127.0.0.1 - - [10/Oct/2000:13:55:36...`) in the actual text, the framework can confidently identify a web server access log even if it's named `evidence.bin`.
+**How it fits together:** This kicks off Milestone 11, giving the framework the ability to accurately identify text-based log artifacts before passing them to the log extraction workflow.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/log_analysis/__init__.py`
+- `src/ctf_assistant/modules/forensics/log_analysis/module.py`
