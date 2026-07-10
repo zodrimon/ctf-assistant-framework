@@ -188,7 +188,7 @@
       module's workflow, stream step-by-step output live (reuse
       WorkflowRunner from the engine — do not duplicate execution logic in
       the TUI layer).
-- [ ] TASK-043 — TODO — TUI session browser: list past sessions (from saved
+- [x] TASK-043 — DONE — TUI session browser: list past sessions (from saved
       Session JSON files) and allow resuming/viewing one.
 - [ ] TASK-044 — TODO — Since TUI interactions are harder to unit test
       automatically, add a manual QA checklist to docs/LEARNING_LOG.md
