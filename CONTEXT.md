@@ -67,12 +67,12 @@ team learners. Not enterprise incident response (not yet).
 
 ```
 Phase: 7 (Network Forensics)
-Module in progress: Network Forensics (PCAP)
-Last completed task: TASK-022
+Module in progress: None
+Last completed task: TASK-024
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/022-pcap-module
+Branch: task/024-pcap-tests
 ```
 
 **Session startup checklist (do this every time, in order):**
