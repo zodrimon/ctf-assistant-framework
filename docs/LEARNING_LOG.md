@@ -653,3 +653,16 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/malware_triage/__init__.py`
 - `src/ctf_assistant/modules/forensics/malware_triage/module.py`
+
+---
+### TASK-038 & 039 — Malware Triage Workflow & Safety Guardrails
+**Date:** 2026-07-10
+**What I built:** I created the `workflow.yaml` for Malware Triage. This workflow extracts MD5/SHA256 hashes, runs `strings` to find readable text, uses `file` to inspect headers, and executes a custom Python script that runs `yara` against a bundled set of basic malware rules.
+**Key concepts:**
+- **Static vs Dynamic Analysis (The Hard Safety Rule):** The framework exclusively performs *Static Analysis*—meaning it looks at the file's contents without ever actually running the code. 
+- **Sandboxing Requirements:** To safely perform *Dynamic Analysis* (actually executing the malware to see what it does), this framework would need to be running inside a highly isolated, ephemeral Virtual Machine (VM) with no network access to the host or internet (a sandbox). Because we cannot guarantee the investigator's environment is sandboxed, **we must never automatically execute arbitrary binaries.** Doing so could instantly infect the host machine.
+**How it fits together:** By keeping triage strictly static, we gather critical intelligence (hashes for VirusTotal, suspicious strings, YARA hits) while maintaining absolute safety for the investigator's machine.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/malware_triage/workflow.yaml`
+- `src/ctf_assistant/modules/forensics/malware_triage/rules/basic.yar`
+- `src/ctf_assistant/modules/forensics/malware_triage/yara_scanner.py`
