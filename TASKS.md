@@ -137,7 +137,7 @@
 
 ## Milestone 10 — Disk Images Module
 
-- [ ] TASK-031 — TODO — modules/forensics/disk/module.py: detect raw/dd
+- [x] TASK-031 — DONE — modules/forensics/disk/module.py: detect raw/dd
       and E01 disk image formats.
 - [ ] TASK-032 — TODO — disk/workflow.yaml: partition listing (mmls from
       Sleuth Kit) and file carving (foremost). Requires sleuthkit and

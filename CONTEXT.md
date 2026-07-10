@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 9 (Steganography)
-Module in progress: None
-Last completed task: TASK-030
+Phase: 10 (Disk Images)
+Module in progress: Disk Images
+Last completed task: TASK-031
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/030-stego-tests
+Branch: task/031-disk-module
 ```
 
 **Session startup checklist (do this every time, in order):**

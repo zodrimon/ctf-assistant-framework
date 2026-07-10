@@ -578,3 +578,14 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This officially completes Milestone 9 (Steganography).
 **Files touched:**
 - `tests/test_steganography.py`
+
+---
+### TASK-031 — Disk Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `DiskModule` to detect disk images (Raw/DD, E01, ISO). Similar to the Memory module, many raw disk images lack a definitive file header because the "header" is actually just the raw partition table of the imaged drive. I implemented detection for known formats (E01 magic bytes, ISO 9660 signatures) and added an interactive fallback for raw files (`.dd`, `.img`, `.raw`) where the system asks the user for confirmation before assuming it's a disk image.
+**Key concepts:**
+- **Raw Image Ambiguity (Rule 3):** Just because a file ends in `.img` or `.raw` doesn't mean it's a disk image—it could be a memory dump or a custom binary format. Interactive fallback ensures we never confidently misclassify ambiguous files.
+**How it fits together:** This kicks off Milestone 10 (Disk Images), providing the analysis capability to identify forensic disk artifacts.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/disk/__init__.py`
+- `src/ctf_assistant/modules/forensics/disk/module.py`
