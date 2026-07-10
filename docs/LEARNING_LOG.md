@@ -556,3 +556,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/steganography/__init__.py`
 - `src/ctf_assistant/modules/forensics/steganography/module.py`
+
+---
+### TASK-029 — Steganography Alternative Paths Menu
+**Date:** 2026-07-10
+**What I built:** I implemented `SteganographyWorkflow` in Python. Because steganography has multiple potential tools depending on the file type (e.g., `zsteg` for PNG, `steghide` for JPEG, `binwalk` for all), the workflow parses the media type from the prior `SteganographyModule` step. If the framework is in `--mode manual`, it pauses and displays a numbered, interactive CLI menu, allowing the user to select which specific tool paths they want to execute (e.g., `1,3` or `all`).
+**Key concepts:**
+- **Alternative Paths:** Instead of blindly running a massive gauntlet of tools (which is slow and noisy), we provide the investigator with a curated list of tools specific to that file format, returning control back to the human.
+**How it fits together:** This uses the `WorkflowRunner` to safely execute whichever tools the user selects via dynamically generated YAML files in the background.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/steganography/__init__.py`
+- `src/ctf_assistant/modules/forensics/steganography/workflow.py`

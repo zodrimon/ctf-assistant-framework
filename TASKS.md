@@ -126,7 +126,7 @@
       image/audio files likely to be candidates (extend beyond magic bytes —
       consider a basic entropy check per rule 3, since stego payloads
       often raise entropy in specific regions).
-- [ ] TASK-029 — TODO — steganography/workflow.yaml: baseline steps —
+- [x] TASK-029 — DONE — steganography/workflow.yaml: baseline steps —
       binwalk, exiftool, strings, and where applicable zsteg (PNG/BMP)
       or steghide (JPEG). Presented as alternative paths, not a forced
       sequence, per the original spec ("never assume only one solution
