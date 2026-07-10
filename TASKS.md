@@ -190,22 +190,22 @@
       the TUI layer).
 - [x] TASK-043 — DONE — TUI session browser: list past sessions (from saved
       Session JSON files) and allow resuming/viewing one.
-- [ ] TASK-044 — TODO — Since TUI interactions are harder to unit test
+- [x] TASK-044 — DONE — Since TUI interactions are harder to unit test
       automatically, add a manual QA checklist to docs/LEARNING_LOG.md
       (steps for the human to click through and verify) rather than skipping
       verification entirely.
 
 ## Milestone 14 — Report Export (PDF/HTML)
 
-- [ ] TASK-045 — TODO — HTML report renderer: reuse the same Session data as
+- [x] TASK-045 — DONE — HTML report renderer: reuse the same Session data as
       the existing Markdown renderer (TASK-007) — do not build a second,
       separate data-gathering path.
-- [ ] TASK-046 — TODO — PDF export from the HTML/Markdown source (e.g. via
+- [x] TASK-046 — DONE — PDF export from the HTML/Markdown source (e.g. via
       WeasyPrint or Pandoc — confirm which is available/lighter-weight before
       picking, per section 4b).
-- [ ] TASK-047 — TODO — CLI command `ctf-assistant report export --format
+- [x] TASK-047 — DONE — CLI command `ctf-assistant report export --format
       {md,html,pdf}`.
-- [ ] TASK-048 — TODO — Tests verifying each export format produces a
+- [x] TASK-048 — DONE — Tests verifying each export format produces a
       non-empty file with expected key sections present.
 
 ---

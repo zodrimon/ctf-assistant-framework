@@ -10,6 +10,46 @@ from ctf_assistant.rag.ingest import ingest_file
 from ctf_assistant.rag.retriever import retrieve_notes
 from ctf_assistant.ai.gemini import GeminiProvider
 
+def report(args):
+    if not args.action == "export":
+        print(f"Unknown report action: {args.action}", file=sys.stderr)
+        sys.exit(1)
+        
+    session_file = Path(args.session).resolve()
+    if not session_file.exists():
+        print(f"Error: Session file not found: {session_file}", file=sys.stderr)
+        sys.exit(1)
+        
+    try:
+        session = Session.load(session_file)
+    except Exception as e:
+        print(f"Error loading session: {e}", file=sys.stderr)
+        sys.exit(1)
+        
+    renderer = ReportRenderer()
+    format_type = args.format.lower()
+    
+    if format_type == "md":
+        output_str = renderer.render_markdown(session)
+        out_path = session_file.with_suffix(".md")
+        out_path.write_text(output_str, encoding="utf-8")
+        print(f"[*] Exported Markdown report to: {out_path}")
+    elif format_type == "html":
+        output_str = renderer.render_html(session)
+        out_path = session_file.with_suffix(".html")
+        out_path.write_text(output_str, encoding="utf-8")
+        print(f"[*] Exported HTML report to: {out_path}")
+    elif format_type == "pdf":
+        out_path = session_file.with_suffix(".pdf")
+        success = renderer.render_pdf(session, out_path)
+        if success:
+            print(f"[*] Exported PDF report to: {out_path}")
+        else:
+            print(f"Error generating PDF.", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(f"Unsupported format: {format_type}", file=sys.stderr)
+        sys.exit(1)
 
 def investigate(args):
     target_file = Path(args.file).resolve()
@@ -127,6 +167,16 @@ def main():
         "tui", help="Launch the interactive Terminal User Interface (TUI)"
     )
 
+    # `report` command
+    report_parser = subparsers.add_parser(
+        "report", help="Manage and export investigation reports"
+    )
+    report_subparsers = report_parser.add_subparsers(dest="action", required=True)
+    
+    export_parser = report_subparsers.add_parser("export", help="Export a session report")
+    export_parser.add_argument("session", help="Path to the session .json file")
+    export_parser.add_argument("--format", choices=["md", "html", "pdf"], required=True, help="Export format")
+
     args = parser.parse_args()
 
     if args.command == "investigate":
@@ -138,6 +188,8 @@ def main():
     elif args.command == "tui":
         from ctf_assistant.tui.app import run_tui
         run_tui()
+    elif args.command == "report":
+        report(args)
 
 if __name__ == "__main__":
     main()
