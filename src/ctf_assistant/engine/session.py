@@ -14,15 +14,17 @@ class Session:
     providing full resumability if the investigation is interrupted.
     """
 
-    def __init__(self, session_id: str | None = None) -> None:
+    def __init__(self, session_id: str | None = None, mode: str = "manual") -> None:
         """
         Initialize a new or existing investigation session.
 
         Args:
             session_id: An optional unique identifier. If not provided,
                         a new UUID will be generated.
+            mode: Investigation mode, either "auto" or "manual".
         """
         self.session_id = session_id or str(uuid.uuid4())
+        self.mode = mode
         self.created_at = datetime.utcnow().isoformat()
         self.updated_at = self.created_at
         self.state: Dict[str, Any] = {}
@@ -50,6 +52,7 @@ class Session:
         """Serialize the session to a dictionary."""
         return {
             "session_id": self.session_id,
+            "mode": getattr(self, "mode", "manual"),
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "state": self.state,
@@ -59,7 +62,7 @@ class Session:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "Session":
         """Deserialize a session from a dictionary."""
-        session = cls(session_id=data.get("session_id"))
+        session = cls(session_id=data.get("session_id"), mode=data.get("mode", "manual"))
         session.created_at = data.get("created_at", session.created_at)
         session.updated_at = data.get("updated_at", session.updated_at)
         session.state = data.get("state", {})

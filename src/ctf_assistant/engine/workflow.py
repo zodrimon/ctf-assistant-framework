@@ -63,6 +63,22 @@ class WorkflowRunner:
                 )
                 continue
 
+            # Mode prompt
+            command_str = " ".join(command)
+            if getattr(self.session, "mode", "manual") == "manual":
+                ans = input(f"Run {command_str}? Reason: {step_name} [Y/n]: ")
+                if ans.lower().strip() == 'n':
+                    self.session.add_finding(
+                        workflow_name,
+                        {
+                            "step": step_name,
+                            "status": "skipped",
+                            "command": command_str,
+                            "reason": "User skipped step in manual mode"
+                        }
+                    )
+                    continue
+
             # Tool missing detection per Rule 5
             tool_name = command[0]
             import shutil

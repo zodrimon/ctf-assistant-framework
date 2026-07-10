@@ -18,7 +18,7 @@ def investigate(args):
         sys.exit(1)
 
     print(f"[*] Starting investigation on: {target_file.name}")
-    session = Session()
+    session = Session(mode=args.mode)
 
     # Step 1: Module Analysis (which internally uses Detector)
     print("[*] Running initial analysis (Detector)...")
@@ -107,6 +107,7 @@ def main():
         "investigate", help="Run initial detection and triage workflows on a file"
     )
     investigate_parser.add_argument("file", help="Path to the evidence file to analyze")
+    investigate_parser.add_argument("--mode", help="Investigation mode (auto or manual)", choices=["auto", "manual"], default="manual")
     investigate_parser.add_argument("--ai", help="Select an optional AI provider to analyze findings", choices=["gemini"])
 
     # `ingest` command
