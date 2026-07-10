@@ -161,13 +161,13 @@
 
 - [x] TASK-037 — DONE — modules/forensics/malware_triage/module.py: detect
       PE (Windows) and ELF (Linux) executables via magic bytes.
-- [ ] TASK-038 — TODO — malware_triage/workflow.yaml: static-only
+- [x] TASK-038 — DONE — malware_triage/workflow.yaml: static-only
       triage — file hashes (md5/sha256), strings, yara scan against a
       small bundled ruleset, PE/ELF header inspection. Requires yara.
       Never execute the analyzed binary — this is a hard safety rule,
       not a style choice; if any future task suggests running the sample,
       stop and ask the human explicitly.
-- [ ] TASK-039 — TODO — Add a short note to docs/LEARNING_LOG.md (as part
+- [x] TASK-039 — DONE — Add a short note to docs/LEARNING_LOG.md (as part
       of this task's entry) explaining why static-only analysis is the
       default and what sandboxing would be needed before ever adding dynamic
       analysis — this is a teaching moment worth capturing explicitly.

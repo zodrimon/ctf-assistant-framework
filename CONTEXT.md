@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 12 (Malware Triage)
 Module in progress: Malware Triage
-Last completed task: TASK-037
+Last completed task: TASK-039
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/037-malware-module
+Branch: task/038-malware-workflow
 ```
 
 **Session startup checklist (do this every time, in order):**
