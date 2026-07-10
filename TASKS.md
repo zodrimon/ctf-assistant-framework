@@ -132,7 +132,7 @@
       sequence, per the original spec ("never assume only one solution
       exists") — ask the human how alternative-path selection should surface
       in manual mode before implementing (e.g. numbered menu).
-- [ ] TASK-030 — TODO — Tests using a small fixture image with a known
+- [x] TASK-030 — DONE — Tests using a small fixture image with a known
       trivial hidden string (e.g. appended after IEND in a PNG).
 
 ## Milestone 10 — Disk Images Module

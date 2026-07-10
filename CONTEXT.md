@@ -67,12 +67,12 @@ team learners. Not enterprise incident response (not yet).
 
 ```
 Phase: 9 (Steganography)
-Module in progress: Steganography
-Last completed task: TASK-029
+Module in progress: None
+Last completed task: TASK-030
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/029-stego-workflow
+Branch: task/030-stego-tests
 ```
 
 **Session startup checklist (do this every time, in order):**
