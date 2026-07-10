@@ -142,7 +142,7 @@
 - [x] TASK-032 — DONE — disk/workflow.yaml: partition listing (mmls from
       Sleuth Kit) and file carving (foremost). Requires sleuthkit and
       foremost.
-- [ ] TASK-033 — TODO — Tests using a small synthetic disk image fixture
+- [x] TASK-033 — DONE — Tests using a small synthetic disk image fixture
       (a few MB, built with a known partition table — document how it was
       generated in the test file's docstring so it's reproducible).
 

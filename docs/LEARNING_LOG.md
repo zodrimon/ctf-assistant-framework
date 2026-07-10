@@ -599,3 +599,13 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This provides the automated analysis commands that the `WorkflowRunner` will execute when a disk artifact is identified.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/disk/workflow.yaml`
+
+---
+### TASK-033 — Disk Module Testing
+**Date:** 2026-07-10
+**What I built:** I added comprehensive tests for the Disk Forensics module. Instead of committing a multi-megabyte synthetic image, I dynamically created a mock E01 file using standard E01 magic bytes (`EVF\x09...`) and simulated the raw disk interactive fallback logic via `monkeypatch`.
+**Key concepts:**
+- **Fixture Generation Documentation:** As required by the spec, I documented the exact shell commands (`dd`, `parted`, `mkfs.ext4`) required to manually reproduce a synthetic 5MB `ext4` disk image inside the `test_disk.py` docstring. This serves as a knowledge-base reference for any future developers working on disk artifact testing, even though we use smaller mocked bytes for the unit tests themselves to save space.
+**How it fits together:** This officially completes Milestone 10 (Disk Images Module).
+**Files touched:**
+- `tests/test_disk.py`
