@@ -228,3 +228,25 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/ai/gemini.py`
 - `src/ctf_assistant/cli.py`
 - `pyproject.toml`
+
+---
+### TASK-017 — Add manual and auto investigation modes
+**Date:** 2026-07-10
+**What I built:** I added support for manual and auto investigation modes in the engine. In manual mode, the engine now prompts the user before executing each step of a workflow, giving them a chance to review the command and its purpose. In auto mode, it runs everything sequentially.
+**Key concepts:** 
+- **Interactive Execution:** By pausing before executing a subprocess, we give control back to the user, ensuring they understand and authorize every command run on their machine.
+**How it fits together:** This directly addresses safety and usability. Instead of blindly running forensics tools, the `WorkflowRunner` now consults the `Session`'s mode and interacts with the user via the CLI, keeping the human in the loop.
+**Files touched:** 
+- `src/ctf_assistant/engine/session.py`
+- `src/ctf_assistant/engine/workflow.py`
+- `src/ctf_assistant/cli.py`
+
+---
+### TASK-018 — Tests for manual and auto modes
+**Date:** 2026-07-10
+**What I built:** I wrote unit tests to verify that the newly added manual mode properly prompts the user before executing a step, and that auto mode runs sequentially without any user interaction. I also updated the older tests to explicitly use auto mode so they don't block waiting for input.
+**Key concepts:** 
+- **Monkeypatching Input:** To test interactive command-line programs, we use `pytest`'s `monkeypatch` feature to fake the `input()` function, allowing the test to automatically "type" yes or no and verify the engine behaves correctly without requiring a human tester.
+**How it fits together:** Automated testing ensures that critical logic—like asking a user for permission—actually works and won't be accidentally broken by future code changes.
+**Files touched:** 
+- `tests/test_workflow.py`
