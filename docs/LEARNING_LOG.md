@@ -467,3 +467,14 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This uses the detection logic from TASK-019 and the safe execution logic from TASK-017/018 to safely unpack evidence.
 **Files touched:** 
 - `src/ctf_assistant/modules/forensics/archives/workflow.py`
+
+---
+### TASK-021 — Tests for Nested Archives
+**Date:** 2026-07-10
+**What I built:** I added a nested archive test fixture (`nested_archive.zip` containing `inner.zip` containing `secret.txt`) and a unit test to verify that the `ArchivesWorkflow` correctly recurses and extracts both the outer and inner archives.
+**Key concepts:** 
+- **Mocking System Tools:** Because we can't guarantee `unzip` is installed on every tester's machine (especially Windows), I mocked Python's `subprocess.run` to intercept the `unzip` command. Instead of actually running the tool, the mock uses Python's built-in `zipfile` module to simulate the extraction. This ensures the test is bulletproof across all operating systems.
+**How it fits together:** This test proves that the recursion logic introduced in TASK-020 actually works end-to-end, closing out Milestone 6.
+**Files touched:** 
+- `tests/fixtures/nested_archive.zip`
+- `tests/test_archives.py`

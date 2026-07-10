@@ -91,7 +91,7 @@
       itself an archive, re-run detection on it (zip-in-zip case from the
       original spec). Cap recursion depth (suggest 5) to avoid zip-bomb
       style infinite loops -- ask the human to confirm the cap before hardcoding.
-- [ ] TASK-021 — TODO — Tests using a small nested-archive fixture
+- [x] TASK-021 — DONE — Tests using a small nested-archive fixture
       (zip containing a zip) checked into tests/fixtures/.
 
 ## Milestone 7 — Network Forensics (PCAP) Module
