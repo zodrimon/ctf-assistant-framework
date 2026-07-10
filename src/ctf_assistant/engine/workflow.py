@@ -33,7 +33,7 @@ class WorkflowRunner:
             
         return workflow
 
-    def execute(self, yaml_path: str | Path, context: Dict[str, str]) -> None:
+    def execute(self, yaml_path: str | Path, context: Dict[str, str], callback=None) -> None:
         """
         Execute the steps defined in the workflow file.
 
@@ -41,6 +41,7 @@ class WorkflowRunner:
             yaml_path: Path to the YAML workflow file.
             context: A dictionary of variables to format into the commands
                      (e.g., {"target": "/path/to/evidence.bin"}).
+            callback: Optional callback function to receive live output.
         """
         workflow = self.load_workflow(yaml_path)
         workflow_name = workflow.get("name", "Unknown Workflow")
@@ -114,21 +115,41 @@ class WorkflowRunner:
                     )
                     continue
 
+            if callback:
+                callback("start_step", {"step_name": step_name, "command": " ".join(command)})
+
             try:
-                result = subprocess.run(
+                process = subprocess.Popen(
                     command,
-                    capture_output=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
                     text=True,
-                    check=True
+                    bufsize=1
                 )
                 
-                output = result.stdout.strip()
+                output_lines = []
+                for line in process.stdout:
+                    output_lines.append(line)
+                    if callback:
+                        callback("output", line)
+                        
+                process.wait()
+                
+                if process.returncode != 0:
+                    raise subprocess.CalledProcessError(
+                        process.returncode, command, output="".join(output_lines)
+                    )
+
+                output = "".join(output_lines).strip()
                 finding_data = {
                     "step": step_name,
                     "status": "success",
                     "command": " ".join(command),
                     "output": output
                 }
+                
+                if callback:
+                    callback("end_step", finding_data)
                 
                 if output:
                     # Query RAG store with the first 1000 characters to avoid huge queries
@@ -142,22 +163,31 @@ class WorkflowRunner:
                     finding_data
                 )
             except subprocess.CalledProcessError as e:
-                self.session.add_finding(
-                    workflow_name,
-                    {
-                        "step": step_name,
-                        "status": "error",
-                        "command": " ".join(command),
-                        "error": e.stderr.strip() or str(e)
-                    }
-                )
+                err_msg = ""
+                if e.stderr:
+                    err_msg = e.stderr.strip()
+                elif e.output:
+                    err_msg = e.output.strip()
+                else:
+                    err_msg = str(e)
+                    
+                err_data = {
+                    "step": step_name,
+                    "status": "error",
+                    "command": " ".join(command),
+                    "error": err_msg
+                }
+                if callback:
+                    callback("end_step", err_data)
+                    
+                self.session.add_finding(workflow_name, err_data)
             except FileNotFoundError as e:
-                 self.session.add_finding(
-                    workflow_name,
-                    {
-                        "step": step_name,
-                        "status": "error",
-                        "command": " ".join(command),
-                        "error": f"Command not found: {command[0]}"
-                    }
-                )
+                err_data = {
+                    "step": step_name,
+                    "status": "error",
+                    "command": " ".join(command),
+                    "error": f"Command not found: {command[0]}"
+                }
+                if callback:
+                    callback("end_step", err_data)
+                self.session.add_finding(workflow_name, err_data)

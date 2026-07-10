@@ -184,7 +184,7 @@
 - [x] TASK-041 — DONE — Textual app skeleton: `ctf-assistant tui` launches a
       main screen listing detected/available modules. No investigation logic
       yet — just navigation shell.
-- [ ] TASK-042 — TODO — TUI investigation view: pick a file, run its matched
+- [x] TASK-042 — DONE — TUI investigation view: pick a file, run its matched
       module's workflow, stream step-by-step output live (reuse
       WorkflowRunner from the engine — do not duplicate execution logic in
       the TUI layer).
