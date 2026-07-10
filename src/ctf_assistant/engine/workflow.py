@@ -84,11 +84,11 @@ class WorkflowRunner:
             import shutil
             if not shutil.which(tool_name):
                 print(f"\n[!] Required tool '{tool_name}' is not installed.")
-                ans = input(f"Attempt to install '{tool_name}' using apt-get? (Requires sudo) [y/N]: ")
+                ans = input(f"Attempt to install '{tool_name}' using apt? (Requires sudo) [y/N]: ")
                 if ans.lower().strip() == 'y':
                     try:
                         print(f"[*] Installing {tool_name}...")
-                        subprocess.run(["sudo", "apt-get", "install", "-y", tool_name], check=True)
+                        subprocess.run(["sudo", "apt", "install", "-y", tool_name], check=True)
                         if not shutil.which(tool_name):
                             raise FileNotFoundError
                     except Exception as e:
