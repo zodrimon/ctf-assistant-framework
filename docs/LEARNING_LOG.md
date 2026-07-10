@@ -704,3 +704,14 @@ This file explains, in plain language, what was built at each step and why.
 - `tests/test_archives.py`
 - `tests/test_memory.py`
 - `src/ctf_assistant/tui/app.py`
+
+---
+### TASK-043 — TUI Session Browser
+**Date:** 2026-07-10
+**What I built:** I added a "Session Browser" to the TUI using Textual's `TabbedContent`. When the user switches tabs, they can see a `ListView` of all previous investigations (loaded dynamically from `.ctf-assistant/sessions/*.json`). Selecting a session renders the saved findings as formatted JSON in a `RichLog` view.
+**Key concepts:**
+- **Textual Layouts & Tabs:** `TabbedContent` allows us to neatly organize different views without overwhelming the screen.
+- **Dynamic Content Loading:** `on_mount` and the `ListView.Selected` event let us build reactive UIs that populate data only when needed (e.g. reading from the filesystem when a session is clicked).
+**How it fits together:** Analysts can now revisit the raw data and findings from past sessions directly within the TUI without having to grep through `.json` files manually.
+**Files touched:**
+- `src/ctf_assistant/tui/app.py`

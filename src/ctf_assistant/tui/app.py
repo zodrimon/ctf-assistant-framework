@@ -1,8 +1,9 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer, Input, Button, RichLog, Label
+from textual.widgets import Header, Footer, Input, Button, RichLog, Label, TabbedContent, TabPane, ListView, ListItem
 from textual.containers import Horizontal, Vertical
 from textual import work
 import sys
+import json
 from pathlib import Path
 
 from ctf_assistant.modules import MODULES
@@ -21,6 +22,14 @@ class CTFAssistantApp(App):
         height: 1fr;
         border: solid green;
     }
+    #session_list {
+        width: 1fr;
+        border: solid blue;
+    }
+    #session_detail_view {
+        width: 2fr;
+        border: solid yellow;
+    }
     """
     
     BINDINGS = [
@@ -29,12 +38,50 @@ class CTFAssistantApp(App):
     
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
-        with Vertical():
-            with Horizontal(id="input_container"):
-                yield Input(placeholder="Enter file path to investigate...", id="file_input")
-                yield Button("Start Triage", id="start_btn", variant="primary")
-            yield RichLog(id="log_view", highlight=True, markup=True)
+        with TabbedContent(initial="investigation_tab"):
+            with TabPane("Investigation", id="investigation_tab"):
+                with Vertical():
+                    with Horizontal(id="input_container"):
+                        yield Input(placeholder="Enter file path to investigate...", id="file_input")
+                        yield Button("Start Triage", id="start_btn", variant="primary")
+                    yield RichLog(id="log_view", highlight=True, markup=True)
+            with TabPane("Session Browser", id="session_tab"):
+                with Horizontal():
+                    yield ListView(id="session_list")
+                    yield RichLog(id="session_detail_view", highlight=True, markup=True)
         yield Footer()
+
+    def on_mount(self) -> None:
+        self.load_sessions()
+
+    def load_sessions(self) -> None:
+        session_list = self.query_one("#session_list", ListView)
+        session_list.clear()
+        
+        sessions_dir = Path(".ctf-assistant/sessions")
+        if not sessions_dir.exists():
+            return
+            
+        for path in sorted(sessions_dir.glob("*.json"), reverse=True):
+            item = ListItem(Label(path.name), id=f"session_{path.stem}")
+            # Attach the path so we can read it later
+            item.session_path = path
+            session_list.append(item)
+
+    def on_list_view_selected(self, event: ListView.Selected) -> None:
+        if event.list_view.id == "session_list":
+            detail_view = self.query_one("#session_detail_view", RichLog)
+            detail_view.clear()
+            
+            path = getattr(event.item, "session_path", None)
+            if path and path.exists():
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                        formatted_json = json.dumps(data, indent=2)
+                        detail_view.write(formatted_json)
+                except Exception as e:
+                    detail_view.write(f"[red]Error loading session: {e}[/red]")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "start_btn":
@@ -121,6 +168,7 @@ class CTFAssistantApp(App):
         except Exception as e:
             write_log(f"\n[bold red]Workflow execution failed: {e}[/bold red]")
             
+        self.call_from_thread(self.load_sessions)
         self.call_from_thread(enable_button)
 
 def run_tui():
