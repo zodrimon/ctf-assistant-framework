@@ -689,3 +689,18 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/cli.py`
 - `src/ctf_assistant/tui/__init__.py`
 - `src/ctf_assistant/tui/app.py`
+
+---
+### TASK-042 — TUI Investigation View & Streaming Execution
+**Date:** 2026-07-10
+**What I built:** I upgraded the `WorkflowRunner` to execute workflows via `subprocess.Popen` instead of `subprocess.run`, allowing us to read line-by-line output asynchronously and pipe it into a callback without blocking execution. I updated the TUI (`app.py`) to include a `RichLog` widget, an input box for the file path, and a button. Now, when a user enters a path, the TUI dynamically loops through all forensic modules, picks the one with the highest confidence, and streams its workflow output live to the screen using a background worker thread (`@work`). I also fixed multiple `pytest` test suites that used mocked subprocessing to accommodate the switch to `Popen`.
+**Key concepts:**
+- **Asynchronous UI Updates:** Textual requires UI updates from background threads to use `self.call_from_thread()`.
+- **Live Output Streaming:** Reading `process.stdout` iteratively from a `subprocess.Popen` instance allows real-time rendering.
+**How it fits together:** This creates the core dashboard experience where analysts can watch their automated triage workflows execute without needing to constantly drop to the terminal.
+**Files touched:**
+- `src/ctf_assistant/engine/workflow.py`
+- `tests/test_file_analysis.py`
+- `tests/test_archives.py`
+- `tests/test_memory.py`
+- `src/ctf_assistant/tui/app.py`

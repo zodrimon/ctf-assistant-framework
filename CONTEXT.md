@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 13 (TUI - Textual)
 Module in progress: None
-Last completed task: TASK-041
+Last completed task: TASK-042
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/041-tui-skeleton
+Branch: task/042-tui-investigate
 ```
 
 **Session startup checklist (do this every time, in order):**

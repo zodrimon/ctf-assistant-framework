@@ -38,6 +38,22 @@ def test_archives_recursive_extraction(tmp_path, monkeypatch):
             )
         return original_run(cmd, *args, **kwargs)
     monkeypatch.setattr(subprocess, "run", mock_run)
+
+    original_popen = subprocess.Popen
+    def mock_popen(cmd, *args, **kwargs):
+        if cmd[0] == "unzip":
+            src = cmd[3]
+            dst = cmd[5]
+            with zipfile.ZipFile(src, 'r') as z:
+                z.extractall(dst)
+            class MockPopenProcess:
+                def __init__(self):
+                    self.stdout = ["Simulated unzip output\n"]
+                    self.returncode = 0
+                def wait(self): pass
+            return MockPopenProcess()
+        return original_popen(cmd, *args, **kwargs)
+    monkeypatch.setattr(subprocess, "Popen", mock_popen)
     
     result = workflow.run(session, str(fixture_path), temp_dir=str(tmp_path))
     

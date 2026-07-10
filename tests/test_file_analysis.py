@@ -44,6 +44,20 @@ def test_file_analysis_e2e(monkeypatch):
         
     monkeypatch.setattr("subprocess.run", mock_run)
 
+    original_popen = subprocess.Popen
+    def mock_popen(command, *args, **kwargs):
+        tool = command[0]
+        if tool in ["file", "exiftool", "strings"]:
+            class MockPopenProcess:
+                def __init__(self):
+                    self.stdout = [f"Mocked output for {tool}\n"]
+                    self.returncode = 0
+                def wait(self): pass
+            return MockPopenProcess()
+        return original_popen(command, *args, **kwargs)
+        
+    monkeypatch.setattr("subprocess.Popen", mock_popen)
+
     # 1. Run Module Analysis
     module = FileAnalysisModule()
     analysis_result = module.analyze(fixture_path)
