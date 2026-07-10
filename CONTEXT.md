@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 10 (Disk Images)
 Module in progress: Disk Images
-Last completed task: TASK-031
+Last completed task: TASK-032
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/031-disk-module
+Branch: task/032-disk-workflow
 ```
 
 **Session startup checklist (do this every time, in order):**

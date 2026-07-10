@@ -589,3 +589,13 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/disk/__init__.py`
 - `src/ctf_assistant/modules/forensics/disk/module.py`
+
+---
+### TASK-032 — Disk Module Workflow
+**Date:** 2026-07-10
+**What I built:** I created `workflow.yaml` for the Disk Forensics module. It defines two simple, deterministic baseline steps: running `mmls` (from Sleuth Kit) to list the partition tables, and `foremost` to carve files from the raw image.
+**Key concepts:**
+- **Deterministic Workflows (Rule 2):** Since these tools are universally applicable to disk images and don't require branching based on intermediate outputs (unlike Memory or Stego), they belong perfectly in a static, simple YAML file.
+**How it fits together:** This provides the automated analysis commands that the `WorkflowRunner` will execute when a disk artifact is identified.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/disk/workflow.yaml`

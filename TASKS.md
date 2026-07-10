@@ -139,7 +139,7 @@
 
 - [x] TASK-031 — DONE — modules/forensics/disk/module.py: detect raw/dd
       and E01 disk image formats.
-- [ ] TASK-032 — TODO — disk/workflow.yaml: partition listing (mmls from
+- [x] TASK-032 — DONE — disk/workflow.yaml: partition listing (mmls from
       Sleuth Kit) and file carving (foremost). Requires sleuthkit and
       foremost.
 - [ ] TASK-033 — TODO — Tests using a small synthetic disk image fixture
