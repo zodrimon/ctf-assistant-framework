@@ -67,12 +67,12 @@ team learners. Not enterprise incident response (not yet).
 
 ```
 Phase: 6 (Archives)
-Module in progress: Archives
-Last completed task: TASK-020
+Module in progress: None
+Last completed task: TASK-021
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/020-archives-workflow
+Branch: task/021-archives-tests
 ```
 
 **Session startup checklist (do this every time, in order):**
