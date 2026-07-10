@@ -631,3 +631,25 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/log_analysis/workflow.yaml`
 - `src/ctf_assistant/modules/forensics/log_analysis/timeline.py`
+
+---
+### TASK-036 — Log Analysis Module Testing
+**Date:** 2026-07-10
+**What I built:** I wrote unit tests for the Log Analysis module. I dynamically created a dummy `auth.log` containing fake failed SSH login attempts and simulated the workflow execution using Python's `monkeypatch` to mock terminal commands.
+**Key concepts:**
+- **Dynamic E2E Testing:** By mocking `shutil.which` and `subprocess.run`, I proved that the engine successfully extracts the target findings via Regex without requiring a real CTF log file or actual terminal dependencies on the host machine. (I also fixed a subtle bug where YAML string formatting accidentally ate our Regex curly braces!)
+**How it fits together:** This officially completes Milestone 11 (Log Analysis Module).
+**Files touched:**
+- `tests/test_log_analysis.py`
+- `src/ctf_assistant/modules/forensics/log_analysis/workflow.yaml`
+
+---
+### TASK-037 — Malware Triage Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `MalwareTriageModule` to identify compiled binary executables (specifically Windows PE files and Linux ELF files). It reads the first 4 bytes of a file looking for the `MZ` (Windows) or `\x7fELF` (Linux) magic bytes.
+**Key concepts:**
+- **Executable Magic Bytes:** The `.exe` or `.elf` extension means nothing in forensics. The only reliable way to know if a file is compiled code is to inspect the header bytes.
+**How it fits together:** This kicks off Milestone 12 (Malware Triage). By reliably identifying executable code, we can automatically funnel these files into static analysis workflows instead of treating them like generic text files.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/malware_triage/__init__.py`
+- `src/ctf_assistant/modules/forensics/malware_triage/module.py`

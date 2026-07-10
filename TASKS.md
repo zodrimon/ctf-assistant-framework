@@ -154,12 +154,12 @@
 - [x] TASK-035 — DONE — log_analysis/workflow.yaml: baseline pattern
       extraction (failed logins, IPs, timestamps) via grep/ripgrep, plus
       a simple chronological timeline builder in Python.
-- [ ] TASK-036 — TODO — Tests using a small sample log fixture with a couple
+- [x] TASK-036 — DONE — Tests using a small sample log fixture with a couple
       of planted "findings" (e.g. a few failed SSH login lines).
 
 ## Milestone 12 — Malware Triage + Basic Binary Inspection Module
 
-- [ ] TASK-037 — TODO — modules/forensics/malware_triage/module.py: detect
+- [x] TASK-037 — DONE — modules/forensics/malware_triage/module.py: detect
       PE (Windows) and ELF (Linux) executables via magic bytes.
 - [ ] TASK-038 — TODO — malware_triage/workflow.yaml: static-only
       triage — file hashes (md5/sha256), strings, yara scan against a
