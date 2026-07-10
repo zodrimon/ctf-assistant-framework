@@ -489,3 +489,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/pcap/__init__.py`
 - `src/ctf_assistant/modules/forensics/pcap/module.py`
+
+---
+### TASK-023 — PCAP Workflow Configuration
+**Date:** 2026-07-10
+**What I built:** I created `workflow.yaml` for the PCAP module. It uses `tshark` to automatically generate a protocol hierarchy summary and extract any HTTP objects (like downloaded images or malware payloads) from the packet capture into a dedicated folder.
+**Key concepts:**
+- **TShark:** TShark is the command-line version of Wireshark. It allows us to automate network analysis that would normally require clicking through a GUI.
+- **Dependency Detection:** By leveraging the engine's built-in tool checker (built in TASK-010), the workflow gracefully halts and asks to install `tshark` via `apt-get` if it's missing on the investigator's machine. I verified this logic works perfectly for new tools.
+**How it fits together:** This uses the YAML engine to orchestrate complex tshark commands automatically.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/pcap/workflow.yaml`
