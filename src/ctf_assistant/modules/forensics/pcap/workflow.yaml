@@ -3,6 +3,6 @@ steps:
   - name: "Protocol Hierarchy Summary"
     command: ["tshark", "-r", "{target}", "-q", "-z", "io,phs"]
   - name: "Create Export Directory"
-    command: ["python", "-c", "import os, sys; os.makedirs(f'{sys.argv[1]}_http_objects', exist_ok=True)", "{target}"]
+    command: ["python", "-c", "import os; os.makedirs(r'{target}_http_objects', exist_ok=True)"]
   - name: "Export HTTP Objects"
     command: ["tshark", "-r", "{target}", "-q", "--export-objects", "http,{target}_http_objects"]

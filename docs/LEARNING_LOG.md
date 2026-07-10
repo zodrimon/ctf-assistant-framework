@@ -500,3 +500,15 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This uses the YAML engine to orchestrate complex tshark commands automatically.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/pcap/workflow.yaml`
+
+---
+### TASK-024 — PCAP Module Testing
+**Date:** 2026-07-10
+**What I built:** I generated a minimal valid `.pcap` fixture file containing only the 24-byte PCAP Global Header. I wrote end-to-end tests for the `PcapModule` that mock the execution of `tshark` and `file` commands.
+**Key concepts:**
+- **Fixture Minimization:** Instead of committing a large multi-megabyte PCAP file, I generated a 24-byte empty PCAP. It has just enough magic bytes and header structure to trigger our detection logic without bloating the git repository.
+- **Cross-Platform Mocks:** I intercepted the `subprocess.run` calls so that even on a machine without `tshark` or `file`, the test passes by faking the standard output of those commands.
+**How it fits together:** This officially completes Milestone 7 (Network Forensics) and guarantees that our logic correctly handles network captures.
+**Files touched:**
+- `tests/fixtures/sample.pcap`
+- `tests/test_pcap.py`
