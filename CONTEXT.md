@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 11 (Log Analysis)
-Module in progress: None
-Last completed task: TASK-036
+Phase: 12 (Malware Triage)
+Module in progress: Malware Triage
+Last completed task: TASK-037
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/036-log-tests
+Branch: task/037-malware-module
 ```
 
 **Session startup checklist (do this every time, in order):**

@@ -159,7 +159,7 @@
 
 ## Milestone 12 — Malware Triage + Basic Binary Inspection Module
 
-- [ ] TASK-037 — TODO — modules/forensics/malware_triage/module.py: detect
+- [x] TASK-037 — DONE — modules/forensics/malware_triage/module.py: detect
       PE (Windows) and ELF (Linux) executables via magic bytes.
 - [ ] TASK-038 — TODO — malware_triage/workflow.yaml: static-only
       triage — file hashes (md5/sha256), strings, yara scan against a

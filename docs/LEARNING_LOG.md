@@ -642,3 +642,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `tests/test_log_analysis.py`
 - `src/ctf_assistant/modules/forensics/log_analysis/workflow.yaml`
+
+---
+### TASK-037 — Malware Triage Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `MalwareTriageModule` to identify compiled binary executables (specifically Windows PE files and Linux ELF files). It reads the first 4 bytes of a file looking for the `MZ` (Windows) or `\x7fELF` (Linux) magic bytes.
+**Key concepts:**
+- **Executable Magic Bytes:** The `.exe` or `.elf` extension means nothing in forensics. The only reliable way to know if a file is compiled code is to inspect the header bytes.
+**How it fits together:** This kicks off Milestone 12 (Malware Triage). By reliably identifying executable code, we can automatically funnel these files into static analysis workflows instead of treating them like generic text files.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/malware_triage/__init__.py`
+- `src/ctf_assistant/modules/forensics/malware_triage/module.py`
