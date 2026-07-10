@@ -74,7 +74,7 @@
       step; when `auto`, run steps sequentially without prompting but still
       log every command to the session. Reuse the existing tool-missing
       prompt logic from TASK-010 — don't duplicate it.
-- [ ] TASK-018 — TODO — Tests: one test asserting manual mode calls the
+- [x] TASK-018 — DONE — Tests: one test asserting manual mode calls the
       confirmation prompt per step (mock the prompt to return yes/no and
       check behavior), one test asserting auto mode runs all steps without
       prompting.

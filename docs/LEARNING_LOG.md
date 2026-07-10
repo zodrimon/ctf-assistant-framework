@@ -240,3 +240,13 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/engine/session.py`
 - `src/ctf_assistant/engine/workflow.py`
 - `src/ctf_assistant/cli.py`
+
+---
+### TASK-018 — Tests for manual and auto modes
+**Date:** 2026-07-10
+**What I built:** I wrote unit tests to verify that the newly added manual mode properly prompts the user before executing a step, and that auto mode runs sequentially without any user interaction. I also updated the older tests to explicitly use auto mode so they don't block waiting for input.
+**Key concepts:** 
+- **Monkeypatching Input:** To test interactive command-line programs, we use `pytest`'s `monkeypatch` feature to fake the `input()` function, allowing the test to automatically "type" yes or no and verify the engine behaves correctly without requiring a human tester.
+**How it fits together:** Automated testing ensures that critical logic—like asking a user for permission—actually works and won't be accidentally broken by future code changes.
+**Files touched:** 
+- `tests/test_workflow.py`

@@ -68,11 +68,11 @@ team learners. Not enterprise incident response (not yet).
 ```
 Phase: 5 (Manual vs Auto)
 Module in progress: None
-Last completed task: TASK-017
+Last completed task: TASK-018
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/017-manual-mode
+Branch: task/018-mode-tests
 ```
 
 **Session startup checklist (do this every time, in order):**
