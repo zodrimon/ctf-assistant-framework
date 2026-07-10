@@ -534,3 +534,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/memory/workflow.py`
 - `src/ctf_assistant/modules/forensics/memory/__init__.py`
+
+---
+### TASK-027 — Memory Module Testing
+**Date:** 2026-07-10
+**What I built:** I wrote end-to-end unit tests for the Memory Module (`test_memory.py`). Since real memory dumps are gigabytes in size, I created a mock `sample.vmem` dynamically in the test containing just 20 bytes of zeros.
+**Key concepts:**
+- **Fixture Minimization:** Following our rules against committing large data, we use tiny synthesized files and mock the output of large tools like `vol` (Volatility) to ensure the framework logic is tested without ballooning the repository size.
+- **Testing Interactive Logic:** I used `monkeypatch.setattr("builtins.input", ...)` to simulate a human user typing "y" into the CLI, proving our interactive fallback works perfectly in automated testing.
+**How it fits together:** This officially completes Milestone 8 (Memory Forensics).
+**Files touched:**
+- `tests/test_memory.py`

@@ -115,7 +115,7 @@
       (likely needs branching logic — profile detection before running
       plugins — so this may belong in Python per rule 2): baseline
       Volatility3 windows.pslist/windows.pstree. Requires volatility3.
-- [ ] TASK-027 — TODO — Tests: since real memory dumps are large, use a
+- [x] TASK-027 — DONE — Tests: since real memory dumps are large, use a
       mocked Volatility3 output (recorded sample JSON) rather than a real
       fixture file — confirm this approach with the human before proceeding
       given section 4b (real memory dumps are impractical as committed fixtures).
