@@ -148,7 +148,7 @@
 
 ## Milestone 11 — Log Analysis Module
 
-- [ ] TASK-034 — TODO — modules/forensics/log_analysis/module.py: detect
+- [x] TASK-034 — DONE — modules/forensics/log_analysis/module.py: detect
       common log formats (syslog, Apache/nginx access logs, auth.log) by
       content pattern, not extension.
 - [ ] TASK-035 — TODO — log_analysis/workflow.yaml: baseline pattern
