@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 8 (Memory Forensics)
-Module in progress: None
-Last completed task: TASK-027
+Phase: 9 (Steganography)
+Module in progress: Steganography
+Last completed task: TASK-028
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/027-memory-tests
+Branch: task/028-stego-module
 ```
 
 **Session startup checklist (do this every time, in order):**
