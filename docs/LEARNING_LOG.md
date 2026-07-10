@@ -620,3 +620,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/log_analysis/__init__.py`
 - `src/ctf_assistant/modules/forensics/log_analysis/module.py`
+
+---
+### TASK-035 — Log Analysis Workflow
+**Date:** 2026-07-10
+**What I built:** I created `workflow.yaml` for Log Analysis and added a simple Python timeline builder. The workflow uses `grep` to extract failed logins and unique IPs, and then runs the custom Python script (`timeline.py`) to parse out timestamps and output a chronological summary of the log events.
+**Key concepts:**
+- **Custom Tool Integration:** The `WorkflowRunner` isn't limited to standard terminal commands like `grep` or `strings`. We can easily run our own Python scripts natively as part of the analysis pipeline.
+**How it fits together:** This gives the Log Analysis module its core baseline capability, combining regex extraction with timeline generation to quickly triage logs.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/log_analysis/workflow.yaml`
+- `src/ctf_assistant/modules/forensics/log_analysis/timeline.py`

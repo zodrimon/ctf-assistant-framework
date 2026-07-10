@@ -1,0 +1,10 @@
+name: Log Analysis Workflow
+steps:
+  - name: Extract Failed Logins
+    command: ["grep", "-i", "-E", "failed|invalid|error", "{target}"]
+
+  - name: Extract Unique IPs
+    command: ["grep", "-o", "-E", "([0-9]{1,3}\\.){3}[0-9]{1,3}", "{target}"]
+
+  - name: Build Chronological Timeline
+    command: ["python", "-m", "ctf_assistant.modules.forensics.log_analysis.timeline", "{target}"]
