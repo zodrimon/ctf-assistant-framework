@@ -567,3 +567,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/steganography/__init__.py`
 - `src/ctf_assistant/modules/forensics/steganography/workflow.py`
+
+---
+### TASK-030 — Steganography Module Testing
+**Date:** 2026-07-10
+**What I built:** I added comprehensive tests for the Steganography module. For the `SteganographyModule`, I dynamically created a mock PNG file containing the standard PNG magic bytes (`\x89PNG\r\n\x1a\n`) and appended a fake hidden string (`super_secret_flag{hidden}`) after the `IEND` chunk. The module correctly detects this as an image and calculates a non-zero entropy score.
+**Key concepts:**
+- **File Format Mocks:** When testing forensics tools, you don't need real, complex files. Writing raw bytes matching the target file format's expected magic signature is often enough to trigger the necessary analysis paths in the code.
+- **Workflow Isolation:** To test the workflow end-to-end, I mocked the `shutil.which` and `subprocess.run` calls. This ensures we can test that `zsteg` is queued for PNGs (and `steghide` is safely ignored) without actually needing those tools installed on the CI runner.
+**How it fits together:** This officially completes Milestone 9 (Steganography).
+**Files touched:**
+- `tests/test_steganography.py`
