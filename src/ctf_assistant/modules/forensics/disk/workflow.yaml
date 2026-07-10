@@ -1,0 +1,7 @@
+name: Disk Forensics Workflow
+steps:
+  - name: Sleuth Kit Partition Listing (mmls)
+    command: ["mmls", "{target}"]
+
+  - name: Foremost File Carving
+    command: ["foremost", "-T", "-i", "{target}"]

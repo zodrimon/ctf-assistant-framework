@@ -578,3 +578,24 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This officially completes Milestone 9 (Steganography).
 **Files touched:**
 - `tests/test_steganography.py`
+
+---
+### TASK-031 — Disk Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `DiskModule` to detect disk images (Raw/DD, E01, ISO). Similar to the Memory module, many raw disk images lack a definitive file header because the "header" is actually just the raw partition table of the imaged drive. I implemented detection for known formats (E01 magic bytes, ISO 9660 signatures) and added an interactive fallback for raw files (`.dd`, `.img`, `.raw`) where the system asks the user for confirmation before assuming it's a disk image.
+**Key concepts:**
+- **Raw Image Ambiguity (Rule 3):** Just because a file ends in `.img` or `.raw` doesn't mean it's a disk image—it could be a memory dump or a custom binary format. Interactive fallback ensures we never confidently misclassify ambiguous files.
+**How it fits together:** This kicks off Milestone 10 (Disk Images), providing the analysis capability to identify forensic disk artifacts.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/disk/__init__.py`
+- `src/ctf_assistant/modules/forensics/disk/module.py`
+
+---
+### TASK-032 — Disk Module Workflow
+**Date:** 2026-07-10
+**What I built:** I created `workflow.yaml` for the Disk Forensics module. It defines two simple, deterministic baseline steps: running `mmls` (from Sleuth Kit) to list the partition tables, and `foremost` to carve files from the raw image.
+**Key concepts:**
+- **Deterministic Workflows (Rule 2):** Since these tools are universally applicable to disk images and don't require branching based on intermediate outputs (unlike Memory or Stego), they belong perfectly in a static, simple YAML file.
+**How it fits together:** This provides the automated analysis commands that the `WorkflowRunner` will execute when a disk artifact is identified.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/disk/workflow.yaml`
