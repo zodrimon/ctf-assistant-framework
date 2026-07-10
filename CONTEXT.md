@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 7 (Network Forensics)
-Module in progress: None
-Last completed task: TASK-024
+Phase: 8 (Memory Forensics)
+Module in progress: Memory Forensics
+Last completed task: TASK-025
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/024-pcap-tests
+Branch: task/025-memory-module
 ```
 
 **Session startup checklist (do this every time, in order):**
