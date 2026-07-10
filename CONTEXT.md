@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 1 (Digital Forensics MVP)
-Module in progress: File Analysis
-Last completed task: TASK-002
-Current task: TASK-003 (see TASKS.md)
+Phase: 4 (AI)
+Module in progress: None
+Last completed task: TASK-016
+Current task: None (Milestone 4 partial)
 Blockers: none
-Last commit: b35e1b4
-Branch: task/002-dev-tooling
+Last commit: pending
+Branch: task/016-ai-provider
 ```
 
 **Session startup checklist (do this every time, in order):**
@@ -83,7 +83,7 @@ Branch: task/002-dev-tooling
    efficient to batch them.
 4. Create/switch to a feature branch named `task/<task-id>-<short-slug>`.
 5. Implement, run any tests/formatting for that task.
-6. Commit with message format: `[TASK-XXX] <short description>`.
+6. Commit with a natural, human-like commit message (e.g., 'Add WorkflowRunner class and tests').
 7. Write a Learning Log entry for the completed task in `docs/LEARNING_LOG.md`
    per §7, before updating TASKS.md status.
 8. Update the task's status in `TASKS.md` to `DONE`.

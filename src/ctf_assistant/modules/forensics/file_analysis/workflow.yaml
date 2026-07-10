@@ -1,0 +1,11 @@
+name: "File Analysis Triage"
+description: "Baseline forensics triage for a given file using standard CLI tools."
+steps:
+  - name: "Identify File Type"
+    command: ["file", "-b", "{target}"]
+  
+  - name: "Extract Metadata (exiftool)"
+    command: ["exiftool", "{target}"]
+    
+  - name: "Extract Strings (min 15 chars)"
+    command: ["strings", "-n", "15", "{target}"]
