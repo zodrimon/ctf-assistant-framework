@@ -49,7 +49,7 @@ def test_file_analysis_e2e(monkeypatch):
     analysis_result = module.analyze(fixture_path)
     
     # 2. Setup Session and WorkflowRunner
-    session = Session()
+    session = Session(mode="auto")
     session.add_finding("File Analysis", analysis_result)
     
     runner = WorkflowRunner(session)

@@ -96,7 +96,7 @@
 
 ## Milestone 7 — Network Forensics (PCAP) Module
 
-- [ ] TASK-022 — TODO — modules/forensics/pcap/module.py: detect
+- [x] TASK-022 — DONE — modules/forensics/pcap/module.py: detect
       pcap/pcapng via magic bytes.
 - [ ] TASK-023 — TODO — pcap/workflow.yaml: baseline steps using tshark
       (protocol hierarchy summary, HTTP object export). Requires tshark —

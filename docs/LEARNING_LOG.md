@@ -478,3 +478,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:** 
 - `tests/fixtures/nested_archive.zip`
 - `tests/test_archives.py`
+
+---
+### TASK-022 — PCAP Module Detection
+**Date:** 2026-07-10
+**What I built:** I created the base `PcapModule` for Phase 7. It uses magic bytes to accurately detect PCAP (`a1b2c3d4`, etc.) and PCAPNG (`0a0d0d0a`) capture files, falling back to the `file` command output just in case.
+**Key concepts:**
+- **PCAP vs PCAPNG:** PCAP is the legacy network capture format. PCAPNG is the next-generation format (used by default in modern Wireshark). We must detect both, but their magic bytes are completely different. PCAP also has endianness and resolution variants for its magic bytes.
+**How it fits together:** This acts as the gateway for the network forensics milestone, routing `.pcap` and `.pcapng` files to the correct workflows.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/pcap/__init__.py`
+- `src/ctf_assistant/modules/forensics/pcap/module.py`
