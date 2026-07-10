@@ -676,3 +676,16 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** This test suite officially completes Milestone 12! The framework can now detect, triage, and run static analysis on suspected malware safely.
 **Files touched:**
 - `tests/test_malware_triage.py`
+
+---
+### TASK-041 — Textual TUI Skeleton
+**Date:** 2026-07-10
+**What I built:** I integrated `textual` into the project and added a new `tui` subcommand to the CLI. The TUI launches a full-screen interactive app that lists the available forensic modules we've built so far.
+**Key concepts:**
+- **Textual framework:** Textual allows building rich, event-driven Terminal User Interfaces in Python using web-like CSS syntax for styling.
+**How it fits together:** This kicks off Milestone 13. While the CLI is great for pipeline automation, a TUI provides a dashboard-like experience for interactive investigations.
+**Files touched:**
+- `pyproject.toml`
+- `src/ctf_assistant/cli.py`
+- `src/ctf_assistant/tui/__init__.py`
+- `src/ctf_assistant/tui/app.py`

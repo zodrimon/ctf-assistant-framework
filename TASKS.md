@@ -181,7 +181,7 @@
 > Adds a richer interface alongside the CLI — the CLI must keep working
 > unchanged; this is additive, not a replacement.
 
-- [ ] TASK-041 — TODO — Textual app skeleton: `ctf-assistant tui` launches a
+- [x] TASK-041 — DONE — Textual app skeleton: `ctf-assistant tui` launches a
       main screen listing detected/available modules. No investigation logic
       yet — just navigation shell.
 - [ ] TASK-042 — TODO — TUI investigation view: pick a file, run its matched

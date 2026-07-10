@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 12 (Malware Triage)
+Phase: 13 (TUI - Textual)
 Module in progress: None
-Last completed task: TASK-040
+Last completed task: TASK-041
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/040-malware-tests
+Branch: task/041-tui-skeleton
 ```
 
 **Session startup checklist (do this every time, in order):**

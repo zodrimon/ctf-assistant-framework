@@ -122,6 +122,11 @@ def main():
     )
     search_parser.add_argument("query", help="Text to search for")
 
+    # `tui` command
+    tui_parser = subparsers.add_parser(
+        "tui", help="Launch the interactive Terminal User Interface (TUI)"
+    )
+
     args = parser.parse_args()
 
     if args.command == "investigate":
@@ -130,6 +135,9 @@ def main():
         ingest(args)
     elif args.command == "search":
         search(args)
+    elif args.command == "tui":
+        from ctf_assistant.tui.app import run_tui
+        run_tui()
 
 if __name__ == "__main__":
     main()
