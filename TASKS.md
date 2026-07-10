@@ -86,7 +86,7 @@
 - [x] TASK-019 — DONE — modules/forensics/archives/module.py: detect zip,
       tar, gzip, rar, 7z via magic bytes (not extension). Follow the File
       Analysis module's structure exactly (CONTEXT.md 2 rule 6).
-- [ ] TASK-020 — TODO — archives/workflow.yaml: list contents, extract to a
+- [x] TASK-020 — DONE — archives/workflow.py: list contents, extract to a
       session-scoped temp dir, and recurse -- if an extracted file is
       itself an archive, re-run detection on it (zip-in-zip case from the
       original spec). Cap recursion depth (suggest 5) to avoid zip-bomb
