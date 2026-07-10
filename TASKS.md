@@ -171,7 +171,7 @@
       of this task's entry) explaining why static-only analysis is the
       default and what sandboxing would be needed before ever adding dynamic
       analysis — this is a teaching moment worth capturing explicitly.
-- [ ] TASK-040 — TODO — Tests using a small benign test binary (e.g. a
+- [x] TASK-040 — DONE — Tests using a small benign test binary (e.g. a
       trivial compiled "hello world," not any real-world sample).
 
 ---

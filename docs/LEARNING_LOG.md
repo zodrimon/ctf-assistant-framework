@@ -666,3 +666,13 @@ This file explains, in plain language, what was built at each step and why.
 - `src/ctf_assistant/modules/forensics/malware_triage/workflow.yaml`
 - `src/ctf_assistant/modules/forensics/malware_triage/rules/basic.yar`
 - `src/ctf_assistant/modules/forensics/malware_triage/yara_scanner.py`
+
+---
+### TASK-040 — Malware Triage Tests
+**Date:** 2026-07-10
+**What I built:** I wrote unit tests for the Malware Triage module. I dynamically created a mock `.exe` with the `MZ` header and a mock `.elf` with the `\x7fELF` header to prove the detection logic works. I also used `monkeypatch` to simulate the E2E execution of `md5sum`, `sha256sum`, `strings`, `file`, and `yara`.
+**Key concepts:**
+- **Dynamic Binary Fixtures:** Writing raw magic bytes into a temporary file allows us to test the `MalwareTriageModule` reliably without needing to bundle actual compiled binaries in the test suite.
+**How it fits together:** This test suite officially completes Milestone 12! The framework can now detect, triage, and run static analysis on suspected malware safely.
+**Files touched:**
+- `tests/test_malware_triage.py`
