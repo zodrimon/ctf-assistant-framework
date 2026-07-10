@@ -66,13 +66,13 @@ team learners. Not enterprise incident response (not yet).
 ## 4. Current Status — UPDATE THIS EVERY SESSION
 
 ```
-Phase: 5 (Manual vs Auto)
-Module in progress: None
-Last completed task: TASK-018
+Phase: 6 (Archives)
+Module in progress: Archives
+Last completed task: TASK-019
 Current task: None
 Blockers: none
 Last commit: pending
-Branch: task/018-mode-tests
+Branch: task/019-archives-module
 ```
 
 **Session startup checklist (do this every time, in order):**

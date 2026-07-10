@@ -250,3 +250,14 @@ This file explains, in plain language, what was built at each step and why.
 **How it fits together:** Automated testing ensures that critical logic—like asking a user for permission—actually works and won't be accidentally broken by future code changes.
 **Files touched:** 
 - `tests/test_workflow.py`
+
+---
+### TASK-019 — Archives Module Detection
+**Date:** 2026-07-10
+**What I built:** I created a new analysis module for handling compressed archive files (like zip, tar, gzip, rar, and 7z). It uses the engine's Detector to read the first few bytes of a file to figure out if it's an archive, without relying on the file extension.
+**Key concepts:** 
+- **Magic Bytes:** Different archive formats always start with a specific signature (e.g., zip files start with `504b0304`). Reading these bytes is a foolproof way to identify a file's true format, even if it's disguised as another file type.
+**How it fits together:** This is the first step of Milestone 6. By conforming to the `Module` interface, the engine will automatically recognize this new module and know how to route archive files to it for analysis.
+**Files touched:** 
+- `src/ctf_assistant/modules/forensics/archives/__init__.py`
+- `src/ctf_assistant/modules/forensics/archives/module.py`
