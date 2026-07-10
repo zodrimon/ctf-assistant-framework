@@ -111,7 +111,7 @@
       memory dump signatures (best-effort — these are harder to fingerprint
       than other formats; ask the human if confidence is too low to proceed
       automatically, per CONTEXT.md 2 rule 3).
-- [ ] TASK-026 — TODO — memory/workflow.yaml or Python Workflow subclass
+- [x] TASK-026 — DONE — memory/workflow.yaml or Python Workflow subclass
       (likely needs branching logic — profile detection before running
       plugins — so this may belong in Python per rule 2): baseline
       Volatility3 windows.pslist/windows.pstree. Requires volatility3.

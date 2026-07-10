@@ -523,3 +523,14 @@ This file explains, in plain language, what was built at each step and why.
 **Files touched:**
 - `src/ctf_assistant/modules/forensics/memory/__init__.py`
 - `src/ctf_assistant/modules/forensics/memory/module.py`
+
+---
+### TASK-026 — Memory Module Workflow
+**Date:** 2026-07-10
+**What I built:** I created `MemoryWorkflow` as a Python subclass rather than a static YAML file. The workflow dynamically executes Volatility 3 commands (`vol`). It first runs `windows.info` to detect if the memory dump is a Windows profile. Only if that succeeds does it proceed to run `windows.pslist` and `windows.pstree`.
+**Key concepts:**
+- **Dynamic Branching (Rule 2):** Because the workflow depends on the output of the first command (profile detection) to decide whether to run the subsequent commands, it cannot be a static YAML file. The Python class solves this by dynamically wrapping commands into temporary YAML structures and feeding them to the safe `WorkflowRunner` engine.
+**How it fits together:** This provides the automated analysis capability for the Memory module, safely wrapping Volatility 3 commands within our interactive/auto engine modes.
+**Files touched:**
+- `src/ctf_assistant/modules/forensics/memory/workflow.py`
+- `src/ctf_assistant/modules/forensics/memory/__init__.py`
