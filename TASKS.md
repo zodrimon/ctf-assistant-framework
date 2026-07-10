@@ -151,7 +151,7 @@
 - [x] TASK-034 — DONE — modules/forensics/log_analysis/module.py: detect
       common log formats (syslog, Apache/nginx access logs, auth.log) by
       content pattern, not extension.
-- [ ] TASK-035 — TODO — log_analysis/workflow.yaml: baseline pattern
+- [x] TASK-035 — DONE — log_analysis/workflow.yaml: baseline pattern
       extraction (failed logins, IPs, timestamps) via grep/ripgrep, plus
       a simple chronological timeline builder in Python.
 - [ ] TASK-036 — TODO — Tests using a small sample log fixture with a couple
