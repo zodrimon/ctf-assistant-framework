@@ -732,3 +732,17 @@ This file explains, in plain language, what was built at each step and why.
 - [ ] Verify a list of session `.json` files is displayed on the left.
 - [ ] Select a session from the list. Verify its raw JSON content is pretty-printed in the right pane.
 - [ ] Press `q` to quit the application cleanly.
+
+---
+### TASK-045 to TASK-048 — Report Export (HTML/PDF)
+**Date:** 2026-07-10
+**What I built:** I added robust report exporting capabilities. The `ReportRenderer` now includes `render_html()` (which uses `markdown` to convert the existing markdown output into HTML) and `render_pdf()` (which uses `xhtml2pdf` to render that HTML into a portable PDF file). I also added a CLI command `ctf-assistant report export <session.json> --format {md,html,pdf}` to allow the user to easily generate these reports post-triage. Finally, I added a comprehensive test suite `test_report_export.py` to ensure the HTML has correct structure and the PDF contains valid `%PDF` magic bytes.
+**Key concepts:**
+- **`xhtml2pdf`:** A pure-python library that avoids the heavy GTK/Cairo dependencies of `WeasyPrint` or the binary dependencies of `pdfkit`, making cross-platform generation simple.
+- **Single Source of Truth:** HTML and PDF formats leverage the exact same logic that built the original Markdown reports, avoiding duplicate data-gathering code.
+**How it fits together:** Analysts can now hand over a professional PDF or HTML report generated instantly from a triage session.
+**Files touched:**
+- `pyproject.toml`
+- `src/ctf_assistant/engine/report.py`
+- `src/ctf_assistant/cli.py`
+- `tests/test_report_export.py`

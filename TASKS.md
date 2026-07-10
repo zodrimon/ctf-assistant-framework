@@ -197,15 +197,15 @@
 
 ## Milestone 14 — Report Export (PDF/HTML)
 
-- [ ] TASK-045 — TODO — HTML report renderer: reuse the same Session data as
+- [x] TASK-045 — DONE — HTML report renderer: reuse the same Session data as
       the existing Markdown renderer (TASK-007) — do not build a second,
       separate data-gathering path.
-- [ ] TASK-046 — TODO — PDF export from the HTML/Markdown source (e.g. via
+- [x] TASK-046 — DONE — PDF export from the HTML/Markdown source (e.g. via
       WeasyPrint or Pandoc — confirm which is available/lighter-weight before
       picking, per section 4b).
-- [ ] TASK-047 — TODO — CLI command `ctf-assistant report export --format
+- [x] TASK-047 — DONE — CLI command `ctf-assistant report export --format
       {md,html,pdf}`.
-- [ ] TASK-048 — TODO — Tests verifying each export format produces a
+- [x] TASK-048 — DONE — Tests verifying each export format produces a
       non-empty file with expected key sections present.
 
 ---
