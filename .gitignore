@@ -10,3 +10,8 @@ build/
 *.egg-info/
 credentials.json
 secrets/
+
+# Personal/Context files
+TASKS.md
+CONTEXT.md
+dummy.md
